@@ -42,7 +42,7 @@ var ApiClient = /*#__PURE__*/function () {
    * @param string environment  Indicates which server to use; acceptable values are "sandbox" or "production", or the full URL of your AvaTax instance.
    * @param number timeout      Specify the timeout for AvaTax requests; default value 20 minutes.
    */
-  function ApiClient() {
+  function ApiClient(configuration) {
     _classCallCheck(this, ApiClient);
 
     /**
@@ -113,7 +113,28 @@ var ApiClient = /*#__PURE__*/function () {
      * Allow user to add superagent plugins
      */
 
-    this.plugins = null;
+    this.plugins = null; // Setup configuration if required
+
+    if (configuration) {
+      var appName = configuration.appName,
+          appVersion = configuration.appVersion,
+          machineName = configuration.machineName,
+          environment = configuration.environment,
+          timeout = configuration.timeout;
+
+      if (environment == 'sandbox') {
+        this.baseUrl = 'https://sandbox-rest.avatax.com';
+      } else if (typeof environment !== "undefined" && (environment.substring(0, 8) == 'https://' || environment.substring(0, 7) == 'http://')) {
+        this.baseUrl = environment;
+      } // Set all of the info on the instance so the callers do not have to pass in the ApiClient to every API.
+
+
+      ApiClient.instance.appName = this.appName = appName;
+      ApiClient.instance.appVersion = this.appVersion = appVersion;
+      ApiClient.instance.machineName = this.machineName = machineName;
+      ApiClient.instance.timeout = this.timeout = timeout;
+      ApiClient.instance.baseUrl = this.baseUrl;
+    }
   }
   /**
    * Configure this client to use the specified username/password security settings
@@ -142,30 +163,10 @@ var ApiClient = /*#__PURE__*/function () {
         this.auth = this.createBasicAuthHeader(accountId, licenseKey);
       } else if (bearerToken != null) {
         this.auth = 'Bearer ' + bearerToken;
-      }
+      } // Add auth config to the instance ApiClient in case the caller is not passing in the ApiClient to each API.
 
-      return this;
-    }
-  }, {
-    key: "withConfiguration",
-    value: function withConfiguration(_ref2) {
-      var appName = _ref2.appName,
-          appVersion = _ref2.appVersion,
-          machineName = _ref2.machineName,
-          environment = _ref2.environment,
-          _ref2$timeout = _ref2.timeout,
-          timeout = _ref2$timeout === void 0 ? 60000 : _ref2$timeout;
-      this.appName = appName;
-      this.appVersion = appVersion;
-      this.machineName = machineName;
 
-      if (environment == 'sandbox') {
-        this.baseUrl = 'https://sandbox-rest.avatax.com';
-      } else if (typeof environment !== "undefined" && (environment.substring(0, 8) == 'https://' || environment.substring(0, 7) == 'http://')) {
-        this.baseUrl = environment;
-      }
-
-      this.timeout = timeout;
+      ApiClient.instance.auth = this.auth;
       return this;
     }
     /**

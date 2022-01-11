@@ -40,14 +40,14 @@ class ApiClient {
     * @param string environment  Indicates which server to use; acceptable values are "sandbox" or "production", or the full URL of your AvaTax instance.
     * @param number timeout      Specify the timeout for AvaTax requests; default value 20 minutes.
     */
-    constructor() {
-         
+    constructor(configuration) {
          /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
          * @default https://rest.avatax.com
          */
         this.baseUrl = 'https://rest.avatax.com';
+        
 
         /**
          * The authentication methods to be included for all API calls.
@@ -105,6 +105,26 @@ class ApiClient {
          */
         this.plugins = null;
 
+        // Setup configuration if required
+        if (configuration) {
+            const { appName, appVersion, machineName, environment, timeout } = configuration;
+            if (environment == 'sandbox') {
+                this.baseUrl = 'https://sandbox-rest.avatax.com';
+            } else if (
+                typeof environment !== "undefined" &&
+                (environment.substring(0, 8) == 'https://' ||
+                environment.substring(0, 7) == 'http://')
+            ) {
+                this.baseUrl = environment;      
+            }
+
+            // Set all of the info on the instance so the callers do not have to pass in the ApiClient to every API.
+            ApiClient.instance.appName = this.appName = appName;
+            ApiClient.instance.appVersion = this.appVersion = appVersion;
+            ApiClient.instance.machineName = this.machineName = machineName;
+            ApiClient.instance.timeout = this.timeout = timeout;
+            ApiClient.instance.baseUrl = this.baseUrl;
+        }
     }
 
     /**
@@ -125,23 +145,8 @@ class ApiClient {
         } else if (bearerToken != null) {
             this.auth = 'Bearer ' + bearerToken;
         }
-        return this;
-    }
-
-    withConfiguration({ appName, appVersion, machineName, environment, timeout = 60000 }) {
-        this.appName = appName;
-        this.appVersion = appVersion;
-        this.machineName = machineName;
-        if (environment == 'sandbox') {
-            this.baseUrl = 'https://sandbox-rest.avatax.com';
-        } else if (
-            typeof environment !== "undefined" &&
-            (environment.substring(0, 8) == 'https://' ||
-            environment.substring(0, 7) == 'http://')
-        ) {
-            this.baseUrl = environment;      
-        }
-        this.timeout = timeout;
+        // Add auth config to the instance ApiClient in case the caller is not passing in the ApiClient to each API.
+        ApiClient.instance.auth = this.auth;
         return this;
     }
 
