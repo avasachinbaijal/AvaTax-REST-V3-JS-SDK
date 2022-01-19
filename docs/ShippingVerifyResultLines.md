@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.ShippingVerifyResultLines
+# AvaTaxRestV3JsSdk.ShippingVerifyResultLines
 
 ## Properties
 
