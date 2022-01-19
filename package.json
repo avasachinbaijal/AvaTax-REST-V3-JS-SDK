@@ -1,6 +1,6 @@
 {
-  "name": "Avalara-Node-ASV",
-  "version": "22.1.0",
+  "name": "AvaTax-REST-V3-JS-SDK",
+  "version": "2.1.1-beta",
   "description": "API_for_evaluating_transactions_against_direct_to_consumer_Beverage_Alcohol_shipping_regulations_This_API_is_currently_in_beta_",
   "license": "Unlicense",
   "main": "dist/index.js",
