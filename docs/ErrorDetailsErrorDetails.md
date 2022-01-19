@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.ErrorDetailsErrorDetails
+# AvaTaxRestV3JsSdk.ErrorDetailsErrorDetails
 
 ## Properties
 
