@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.AgeVerifyRequest
+# AvaTaxRestV3JsSdk.AgeVerifyRequest
 
 ## Properties
 
