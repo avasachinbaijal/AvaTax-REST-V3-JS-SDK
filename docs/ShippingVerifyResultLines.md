@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.ShippingVerifyResultLines
+# AvalaraSdk.ShippingVerifyResultLines
 
 ## Properties
 
