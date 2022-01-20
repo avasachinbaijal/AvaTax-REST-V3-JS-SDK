@@ -1,13 +1,9 @@
 {
-  "name": "avatax-sdk",
-  "version": "1.0.0",
+  "name": "avalara-sdk",
+  "version": "2.1.5",
   "description": "API_for_evaluating_transactions_against_direct_to_consumer_Beverage_Alcohol_shipping_regulations_This_API_is_currently_in_beta_",
   "license": "Unlicense",
   "main": "dist/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/avasachinbaijal/AvaTax-REST-V3-JS-SDK.git"
-  },
   "scripts": {
     "build": "babel src -d dist",
     "prepare": "npm run build",
