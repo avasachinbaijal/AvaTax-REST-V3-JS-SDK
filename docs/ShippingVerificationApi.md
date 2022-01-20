@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.ShippingVerificationApi
+# AvalaraSdk.ShippingVerificationApi
 
 All URIs are relative to *http://localhost*
 
@@ -20,8 +20,8 @@ Removes the transaction from consideration when evaluating regulations that span
 ### Example
 
 ```javascript
-import AvalaraNodeAsv from 'Avalara-Node-ASV';
-let defaultClient = AvalaraNodeAsv.ApiClient.instance;
+import AvalaraSdk from 'avalara-sdk';
+let defaultClient = AvalaraSdk.ApiClient.instance;
 // Configure HTTP basic authorization: BasicAuth
 let BasicAuth = defaultClient.authentications['BasicAuth'];
 BasicAuth.username = 'YOUR USERNAME';
@@ -32,7 +32,7 @@ Bearer.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //Bearer.apiKeyPrefix = 'Token';
 
-let apiInstance = new AvalaraNodeAsv.ShippingVerificationApi();
+let apiInstance = new AvalaraSdk.ShippingVerificationApi();
 let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 let opts = {
@@ -79,8 +79,8 @@ Registers the transaction so that it may be included when evaluating regulations
 ### Example
 
 ```javascript
-import AvalaraNodeAsv from 'Avalara-Node-ASV';
-let defaultClient = AvalaraNodeAsv.ApiClient.instance;
+import AvalaraSdk from 'avalara-sdk';
+let defaultClient = AvalaraSdk.ApiClient.instance;
 // Configure HTTP basic authorization: BasicAuth
 let BasicAuth = defaultClient.authentications['BasicAuth'];
 BasicAuth.username = 'YOUR USERNAME';
@@ -91,7 +91,7 @@ Bearer.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //Bearer.apiKeyPrefix = 'Token';
 
-let apiInstance = new AvalaraNodeAsv.ShippingVerificationApi();
+let apiInstance = new AvalaraSdk.ShippingVerificationApi();
 let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 let opts = {
@@ -138,8 +138,8 @@ Evaluates a transaction against a set of direct-to-consumer shipping regulations
 ### Example
 
 ```javascript
-import AvalaraNodeAsv from 'Avalara-Node-ASV';
-let defaultClient = AvalaraNodeAsv.ApiClient.instance;
+import AvalaraSdk from 'avalara-sdk';
+let defaultClient = AvalaraSdk.ApiClient.instance;
 // Configure HTTP basic authorization: BasicAuth
 let BasicAuth = defaultClient.authentications['BasicAuth'];
 BasicAuth.username = 'YOUR USERNAME';
@@ -150,7 +150,7 @@ Bearer.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //Bearer.apiKeyPrefix = 'Token';
 
-let apiInstance = new AvalaraNodeAsv.ShippingVerificationApi();
+let apiInstance = new AvalaraSdk.ShippingVerificationApi();
 let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 let opts = {
@@ -199,8 +199,8 @@ The transaction and its lines must meet the following criteria in order to be ev
 ### Example
 
 ```javascript
-import AvalaraNodeAsv from 'Avalara-Node-ASV';
-let defaultClient = AvalaraNodeAsv.ApiClient.instance;
+import AvalaraSdk from 'avalara-sdk';
+let defaultClient = AvalaraSdk.ApiClient.instance;
 // Configure HTTP basic authorization: BasicAuth
 let BasicAuth = defaultClient.authentications['BasicAuth'];
 BasicAuth.username = 'YOUR USERNAME';
@@ -211,7 +211,7 @@ Bearer.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //Bearer.apiKeyPrefix = 'Token';
 
-let apiInstance = new AvalaraNodeAsv.ShippingVerificationApi();
+let apiInstance = new AvalaraSdk.ShippingVerificationApi();
 let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 let opts = {

@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.AgeVerifyResult
+# AvalaraSdk.AgeVerifyResult
 
 ## Properties
 
