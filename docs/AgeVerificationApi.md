@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.AgeVerificationApi
+# AvalaraSdk.AgeVerificationApi
 
 All URIs are relative to *http://localhost*
 
@@ -19,8 +19,8 @@ The request must meet the following criteria in order to be evaluated: * *firstN
 ### Example
 
 ```javascript
-import AvalaraNodeAsv from 'Avalara-Node-ASV';
-let defaultClient = AvalaraNodeAsv.ApiClient.instance;
+import AvalaraSdk from 'avalara-sdk';
+let defaultClient = AvalaraSdk.ApiClient.instance;
 // Configure HTTP basic authorization: BasicAuth
 let BasicAuth = defaultClient.authentications['BasicAuth'];
 BasicAuth.username = 'YOUR USERNAME';
@@ -31,10 +31,10 @@ Bearer.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //Bearer.apiKeyPrefix = 'Token';
 
-let apiInstance = new AvalaraNodeAsv.AgeVerificationApi();
-let ageVerifyRequest = new AvalaraNodeAsv.AgeVerifyRequest(); // AgeVerifyRequest | Information about the individual whose age is being verified.
+let apiInstance = new AvalaraSdk.AgeVerificationApi();
+let ageVerifyRequest = new AvalaraSdk.AgeVerifyRequest(); // AgeVerifyRequest | Information about the individual whose age is being verified.
 let opts = {
-  'simulatedFailureCode': new AvalaraNodeAsv.AgeVerifyFailureCode() // AgeVerifyFailureCode | (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes.
+  'simulatedFailureCode': new AvalaraSdk.AgeVerifyFailureCode() // AgeVerifyFailureCode | (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes.
 };
 apiInstance.verifyAge(ageVerifyRequest, opts, (error, data, response) => {
   if (error) {

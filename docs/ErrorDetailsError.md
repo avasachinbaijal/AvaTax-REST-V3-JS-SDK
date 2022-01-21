@@ -1,4 +1,4 @@
-# AvalaraNodeAsv.ErrorDetailsError
+# AvalaraSdk.ErrorDetailsError
 
 ## Properties
 
