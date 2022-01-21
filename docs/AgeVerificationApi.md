@@ -19,33 +19,35 @@ The request must meet the following criteria in order to be evaluated: * *firstN
 ### Example
 
 ```javascript
-import AvalaraSdk from 'avalara-sdk';
-let defaultClient = AvalaraSdk.ApiClient.instance;
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-// Configure API key authorization: Bearer
-let Bearer = defaultClient.authentications['Bearer'];
-Bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//Bearer.apiKeyPrefix = 'Token';
+var configuration = {
+    appName: 'asv-sdk-test-app',
+    appVersion: '1.0',
+    environment: 'sandbox',
+    machineName: 'test-machine',
+    timeout: 200000000,
+    username: 'foo',
+    password: 'bar'
+};
+var AvalaraSdk = require('avalara-sdk');
+var defaultClient = new AvalaraSdk.ApiClient(configuration);
 
-let apiInstance = new AvalaraSdk.AgeVerificationApi();
-let ageVerifyRequest = new AvalaraSdk.AgeVerifyRequest(); // AgeVerifyRequest | Information about the individual whose age is being verified.
-let opts = {
+var apiInstance = new AvalaraSdk.AgeVerificationApi(defaultClient);
+var ageVerifyRequest = new AvalaraSdk.AgeVerifyRequest(); // AgeVerifyRequest | Information about the individual whose age is being verified.
+var opts = {
   'simulatedFailureCode': new AvalaraSdk.AgeVerifyFailureCode() // AgeVerifyFailureCode | (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes.
 };
-apiInstance.verifyAge(ageVerifyRequest, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.verifyAge(ageVerifyRequest, opts, callback);
 ```
 
 ### Parameters
+
 
 
 Name | Type | Description  | Notes

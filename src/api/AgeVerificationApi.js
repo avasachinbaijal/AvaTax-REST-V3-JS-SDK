@@ -10,33 +10,44 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.1.5
+ * @version    2.1.6
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
-
-import ApiClient from "../ApiClient";
-import AgeVerifyFailureCode from '../model/AgeVerifyFailureCode';
-import AgeVerifyRequest from '../model/AgeVerifyRequest';
-import AgeVerifyResult from '../model/AgeVerifyResult';
-
-/**
-* AgeVerification service.
-* @module api/AgeVerificationApi
-* @version 2.1.5
-*/
-export default class AgeVerificationApi {
-
-    /**
-    * Constructs a new AgeVerificationApi. 
-    * @alias module:api/AgeVerificationApi
-    * @class
-    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-    * default to {@link module:ApiClient#instance} if unspecified.
-    */
-    constructor(apiClient) {
-        this.apiClient = apiClient || ApiClient.instance;
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['ApiClient', 'model/AgeVerifyFailureCode', 'model/AgeVerifyRequest', 'model/AgeVerifyResult'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS-like environments that support module.exports, like Node.
+    module.exports = factory(require('../ApiClient'), require('../model/AgeVerifyFailureCode'), require('../model/AgeVerifyRequest'), require('../model/AgeVerifyResult'));
+  } else {
+    // Browser globals (root is window)
+    if (!root.AvalaraSdk) {
+      root.AvalaraSdk = {};
     }
+    root.AvalaraSdk.AgeVerificationApi = factory(root.AvalaraSdk.ApiClient, root.AvalaraSdk.AgeVerifyFailureCode, root.AvalaraSdk.AgeVerifyRequest, root.AvalaraSdk.AgeVerifyResult);
+  }
+}(this, function(ApiClient, AgeVerifyFailureCode, AgeVerifyRequest, AgeVerifyResult) {
+  'use strict';
+
+  /**
+   * AgeVerification service.
+   * @module api/AgeVerificationApi
+   * @version 2.1.6
+   */
+
+  /**
+   * Constructs a new AgeVerificationApi. 
+   * @alias module:api/AgeVerificationApi
+   * @class
+   * @param {module:ApiClient} [apiClient] API client implementation to use.
+   */
+  var exports = function(apiClient) {
+    if (!apiClient) {
+        throw new Error('apiClient is a required parameter.');
+    }
+    this.apiClient = apiClient;
 
 
     /**
@@ -56,34 +67,37 @@ export default class AgeVerificationApi {
      * @param {module:api/AgeVerificationApi~verifyAgeCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/AgeVerifyResult}
      */
-    verifyAge(ageVerifyRequest, opts, callback) {
+    this.verifyAge = function(ageVerifyRequest, opts, callback) {
       opts = opts || {};
-      let postBody = ageVerifyRequest;
+      var postBody = ageVerifyRequest;
       // verify the required parameter 'ageVerifyRequest' is set
       if (ageVerifyRequest === undefined || ageVerifyRequest === null) {
         throw new Error("Missing the required parameter 'ageVerifyRequest' when calling verifyAge");
       }
 
-      let pathParams = {
+      var pathParams = {
       };
-      let queryParams = {
-        'simulatedFailureCode': opts['simulatedFailureCode']
+      var queryParams = {
+        'simulatedFailureCode': opts['simulatedFailureCode'],
       };
-      let headerParams = {
+      var collectionQueryParams = {
       };
-      let formParams = {
+      var headerParams = {
+      };
+      var formParams = {
       };
 
-      let authNames = ['BasicAuth', 'Bearer'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = AgeVerifyResult;
+      var authNames = ['BasicAuth', 'Bearer'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = AgeVerifyResult;
       return this.apiClient.callApi(
         '/api/v2/ageverification/verify', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
     }
+  };
 
-
-}
+  return exports;
+}));
