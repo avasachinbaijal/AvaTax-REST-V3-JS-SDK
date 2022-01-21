@@ -20,34 +20,36 @@ Removes the transaction from consideration when evaluating regulations that span
 ### Example
 
 ```javascript
-import AvalaraSdk from 'avalara-sdk';
-let defaultClient = AvalaraSdk.ApiClient.instance;
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-// Configure API key authorization: Bearer
-let Bearer = defaultClient.authentications['Bearer'];
-Bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//Bearer.apiKeyPrefix = 'Token';
+var configuration = {
+    appName: 'asv-sdk-test-app',
+    appVersion: '1.0',
+    environment: 'sandbox',
+    machineName: 'test-machine',
+    timeout: 200000000,
+    username: 'foo',
+    password: 'bar'
+};
+var AvalaraSdk = require('avalara-sdk');
+var defaultClient = new AvalaraSdk.ApiClient(configuration);
 
-let apiInstance = new AvalaraSdk.ShippingVerificationApi();
-let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
-let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
-let opts = {
+var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
+var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
+var opts = {
   'documentType': "documentType_example" // String | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
 };
-apiInstance.deregisterShipment(companyCode, transactionCode, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-});
+};
+apiInstance.deregisterShipment(companyCode, transactionCode, opts, callback);
 ```
 
 ### Parameters
+
 
 
 Name | Type | Description  | Notes
@@ -79,34 +81,36 @@ Registers the transaction so that it may be included when evaluating regulations
 ### Example
 
 ```javascript
-import AvalaraSdk from 'avalara-sdk';
-let defaultClient = AvalaraSdk.ApiClient.instance;
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-// Configure API key authorization: Bearer
-let Bearer = defaultClient.authentications['Bearer'];
-Bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//Bearer.apiKeyPrefix = 'Token';
+var configuration = {
+    appName: 'asv-sdk-test-app',
+    appVersion: '1.0',
+    environment: 'sandbox',
+    machineName: 'test-machine',
+    timeout: 200000000,
+    username: 'foo',
+    password: 'bar'
+};
+var AvalaraSdk = require('avalara-sdk');
+var defaultClient = new AvalaraSdk.ApiClient(configuration);
 
-let apiInstance = new AvalaraSdk.ShippingVerificationApi();
-let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
-let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
-let opts = {
+var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
+var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
+var opts = {
   'documentType': "documentType_example" // String | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
 };
-apiInstance.registerShipment(companyCode, transactionCode, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-});
+};
+apiInstance.registerShipment(companyCode, transactionCode, opts, callback);
 ```
 
 ### Parameters
+
 
 
 Name | Type | Description  | Notes
@@ -138,34 +142,36 @@ Evaluates a transaction against a set of direct-to-consumer shipping regulations
 ### Example
 
 ```javascript
-import AvalaraSdk from 'avalara-sdk';
-let defaultClient = AvalaraSdk.ApiClient.instance;
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-// Configure API key authorization: Bearer
-let Bearer = defaultClient.authentications['Bearer'];
-Bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//Bearer.apiKeyPrefix = 'Token';
+var configuration = {
+    appName: 'asv-sdk-test-app',
+    appVersion: '1.0',
+    environment: 'sandbox',
+    machineName: 'test-machine',
+    timeout: 200000000,
+    username: 'foo',
+    password: 'bar'
+};
+var AvalaraSdk = require('avalara-sdk');
+var defaultClient = new AvalaraSdk.ApiClient(configuration);
 
-let apiInstance = new AvalaraSdk.ShippingVerificationApi();
-let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
-let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
-let opts = {
+var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
+var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
+var opts = {
   'documentType': "documentType_example" // String | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
 };
-apiInstance.registerShipmentIfCompliant(companyCode, transactionCode, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.registerShipmentIfCompliant(companyCode, transactionCode, opts, callback);
 ```
 
 ### Parameters
+
 
 
 Name | Type | Description  | Notes
@@ -199,34 +205,36 @@ The transaction and its lines must meet the following criteria in order to be ev
 ### Example
 
 ```javascript
-import AvalaraSdk from 'avalara-sdk';
-let defaultClient = AvalaraSdk.ApiClient.instance;
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-// Configure API key authorization: Bearer
-let Bearer = defaultClient.authentications['Bearer'];
-Bearer.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//Bearer.apiKeyPrefix = 'Token';
+var configuration = {
+    appName: 'asv-sdk-test-app',
+    appVersion: '1.0',
+    environment: 'sandbox',
+    machineName: 'test-machine',
+    timeout: 200000000,
+    username: 'foo',
+    password: 'bar'
+};
+var AvalaraSdk = require('avalara-sdk');
+var defaultClient = new AvalaraSdk.ApiClient(configuration);
 
-let apiInstance = new AvalaraSdk.ShippingVerificationApi();
-let companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
-let transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
-let opts = {
+var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
+var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
+var opts = {
   'documentType': "documentType_example" // String | (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
 };
-apiInstance.verifyShipment(companyCode, transactionCode, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.verifyShipment(companyCode, transactionCode, opts, callback);
 ```
 
 ### Parameters
+
 
 
 Name | Type | Description  | Notes

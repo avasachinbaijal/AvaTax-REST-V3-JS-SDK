@@ -10,32 +10,44 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.1.5
+ * @version    2.1.6
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
-
-import ApiClient from "../ApiClient";
-import ErrorDetails from '../model/ErrorDetails';
-import ShippingVerifyResult from '../model/ShippingVerifyResult';
-
-/**
-* ShippingVerification service.
-* @module api/ShippingVerificationApi
-* @version 2.1.5
-*/
-export default class ShippingVerificationApi {
-
-    /**
-    * Constructs a new ShippingVerificationApi. 
-    * @alias module:api/ShippingVerificationApi
-    * @class
-    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-    * default to {@link module:ApiClient#instance} if unspecified.
-    */
-    constructor(apiClient) {
-        this.apiClient = apiClient || ApiClient.instance;
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['ApiClient', 'model/ErrorDetails', 'model/ShippingVerifyResult'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS-like environments that support module.exports, like Node.
+    module.exports = factory(require('../ApiClient'), require('../model/ErrorDetails'), require('../model/ShippingVerifyResult'));
+  } else {
+    // Browser globals (root is window)
+    if (!root.AvalaraSdk) {
+      root.AvalaraSdk = {};
     }
+    root.AvalaraSdk.ShippingVerificationApi = factory(root.AvalaraSdk.ApiClient, root.AvalaraSdk.ErrorDetails, root.AvalaraSdk.ShippingVerifyResult);
+  }
+}(this, function(ApiClient, ErrorDetails, ShippingVerifyResult) {
+  'use strict';
+
+  /**
+   * ShippingVerification service.
+   * @module api/ShippingVerificationApi
+   * @version 2.1.6
+   */
+
+  /**
+   * Constructs a new ShippingVerificationApi. 
+   * @alias module:api/ShippingVerificationApi
+   * @class
+   * @param {module:ApiClient} [apiClient] API client implementation to use.
+   */
+  var exports = function(apiClient) {
+    if (!apiClient) {
+        throw new Error('apiClient is a required parameter.');
+    }
+    this.apiClient = apiClient;
 
 
     /**
@@ -54,9 +66,9 @@ export default class ShippingVerificationApi {
      * @param {module:model/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
      * @param {module:api/ShippingVerificationApi~deregisterShipmentCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    deregisterShipment(companyCode, transactionCode, opts, callback) {
+    this.deregisterShipment = function(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
-      let postBody = null;
+      var postBody = null;
       // verify the required parameter 'companyCode' is set
       if (companyCode === undefined || companyCode === null) {
         throw new Error("Missing the required parameter 'companyCode' when calling deregisterShipment");
@@ -66,25 +78,27 @@ export default class ShippingVerificationApi {
         throw new Error("Missing the required parameter 'transactionCode' when calling deregisterShipment");
       }
 
-      let pathParams = {
+      var pathParams = {
         'companyCode': companyCode,
         'transactionCode': transactionCode
       };
-      let queryParams = {
-        'documentType': opts['documentType']
+      var queryParams = {
+        'documentType': opts['documentType'],
       };
-      let headerParams = {
+      var collectionQueryParams = {
       };
-      let formParams = {
+      var headerParams = {
+      };
+      var formParams = {
       };
 
-      let authNames = ['BasicAuth', 'Bearer'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = null;
+      var authNames = ['BasicAuth', 'Bearer'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
     }
@@ -105,9 +119,9 @@ export default class ShippingVerificationApi {
      * @param {module:model/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
      * @param {module:api/ShippingVerificationApi~registerShipmentCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    registerShipment(companyCode, transactionCode, opts, callback) {
+    this.registerShipment = function(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
-      let postBody = null;
+      var postBody = null;
       // verify the required parameter 'companyCode' is set
       if (companyCode === undefined || companyCode === null) {
         throw new Error("Missing the required parameter 'companyCode' when calling registerShipment");
@@ -117,25 +131,27 @@ export default class ShippingVerificationApi {
         throw new Error("Missing the required parameter 'transactionCode' when calling registerShipment");
       }
 
-      let pathParams = {
+      var pathParams = {
         'companyCode': companyCode,
         'transactionCode': transactionCode
       };
-      let queryParams = {
-        'documentType': opts['documentType']
+      var queryParams = {
+        'documentType': opts['documentType'],
       };
-      let headerParams = {
+      var collectionQueryParams = {
       };
-      let formParams = {
+      var headerParams = {
+      };
+      var formParams = {
       };
 
-      let authNames = ['BasicAuth', 'Bearer'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = null;
+      var authNames = ['BasicAuth', 'Bearer'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
     }
@@ -157,9 +173,9 @@ export default class ShippingVerificationApi {
      * @param {module:api/ShippingVerificationApi~registerShipmentIfCompliantCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ShippingVerifyResult}
      */
-    registerShipmentIfCompliant(companyCode, transactionCode, opts, callback) {
+    this.registerShipmentIfCompliant = function(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
-      let postBody = null;
+      var postBody = null;
       // verify the required parameter 'companyCode' is set
       if (companyCode === undefined || companyCode === null) {
         throw new Error("Missing the required parameter 'companyCode' when calling registerShipmentIfCompliant");
@@ -169,25 +185,27 @@ export default class ShippingVerificationApi {
         throw new Error("Missing the required parameter 'transactionCode' when calling registerShipmentIfCompliant");
       }
 
-      let pathParams = {
+      var pathParams = {
         'companyCode': companyCode,
         'transactionCode': transactionCode
       };
-      let queryParams = {
-        'documentType': opts['documentType']
+      var queryParams = {
+        'documentType': opts['documentType'],
       };
-      let headerParams = {
+      var collectionQueryParams = {
       };
-      let formParams = {
+      var headerParams = {
+      };
+      var formParams = {
       };
 
-      let authNames = ['BasicAuth', 'Bearer'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = ShippingVerifyResult;
+      var authNames = ['BasicAuth', 'Bearer'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = ShippingVerifyResult;
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant', 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
     }
@@ -210,9 +228,9 @@ export default class ShippingVerificationApi {
      * @param {module:api/ShippingVerificationApi~verifyShipmentCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ShippingVerifyResult}
      */
-    verifyShipment(companyCode, transactionCode, opts, callback) {
+    this.verifyShipment = function(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
-      let postBody = null;
+      var postBody = null;
       // verify the required parameter 'companyCode' is set
       if (companyCode === undefined || companyCode === null) {
         throw new Error("Missing the required parameter 'companyCode' when calling verifyShipment");
@@ -222,28 +240,31 @@ export default class ShippingVerificationApi {
         throw new Error("Missing the required parameter 'transactionCode' when calling verifyShipment");
       }
 
-      let pathParams = {
+      var pathParams = {
         'companyCode': companyCode,
         'transactionCode': transactionCode
       };
-      let queryParams = {
-        'documentType': opts['documentType']
+      var queryParams = {
+        'documentType': opts['documentType'],
       };
-      let headerParams = {
+      var collectionQueryParams = {
       };
-      let formParams = {
+      var headerParams = {
+      };
+      var formParams = {
       };
 
-      let authNames = ['BasicAuth', 'Bearer'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = ShippingVerifyResult;
+      var authNames = ['BasicAuth', 'Bearer'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = ShippingVerifyResult;
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
+        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
     }
+  };
 
-
-}
+  return exports;
+}));
