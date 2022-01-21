@@ -36,21 +36,29 @@ var ApiClient = /*#__PURE__*/function () {
    * Construct a new ApiClient 
    * 
    * @constructor
-   * @param string appName      Specify the name of your application here.  Should not contain any semicolons.
-   * @param string appVersion   Specify the version number of your application here.  Should not contain any semicolons.
-   * @param string machineName  Specify the machine name of the machine on which this code is executing here.  Should not contain any semicolons.
-   * @param string environment  Indicates which server to use; acceptable values are "sandbox" or "production", or the full URL of your AvaTax instance.
-   * @param number timeout      Specify the timeout for AvaTax requests; default value 20 minutes.
+   * @param {Object} configuration Object with various configuration options required by the ApiClient.
+   * @param {string} configuration.appName      Specify the name of your application here.  Should not contain any semicolons.
+   * @param {string} configuration.appVersion   Specify the version number of your application here.  Should not contain any semicolons.
+   * @param {string} configuration.machineName  Specify the machine name of the machine on which this code is executing here.  Should not contain any semicolons.
+   * @param {string} configuration.environment  Indicates which server to use; acceptable values are "sandbox" or "production", or the full URL of your AvaTax instance.
+   * @param {number} configuration.timeout      Specify the timeout for AvaTax requests; default value 20 minutes.
+   * @param {string} configuration.username        The username for your AvaTax user account
+   * @param {string} configuration.password        The password for your AvaTax user account
+   * @param {string} configuration.bearerToken     The OAuth 2.0 token provided by Avalara Identity
    */
   function ApiClient(configuration) {
     _classCallCheck(this, ApiClient);
 
+    if (!configuration) {
+      throw new Error('Configuration object is required.');
+    }
     /**
     * The base URL against which to resolve every API call's (relative) path.
     * @type {String}
-    * @default https://rest.avatax.com
     */
-    this.baseUrl = 'https://rest.avatax.com';
+
+
+    this.baseUrl = '';
     /**
      * The authentication methods to be included for all API calls.
      * @type {Array.<String>}
@@ -113,69 +121,44 @@ var ApiClient = /*#__PURE__*/function () {
      * Allow user to add superagent plugins
      */
 
-    this.plugins = null; // Setup configuration if required
+    this.plugins = null; // Setup configuration options for the ApiClient.
 
-    if (configuration) {
-      var appName = configuration.appName,
-          appVersion = configuration.appVersion,
-          machineName = configuration.machineName,
-          environment = configuration.environment,
-          timeout = configuration.timeout;
+    var appName = configuration.appName,
+        appVersion = configuration.appVersion,
+        bearerToken = configuration.bearerToken,
+        machineName = configuration.machineName,
+        environment = configuration.environment,
+        timeout = configuration.timeout,
+        username = configuration.username,
+        password = configuration.password;
 
-      if (environment == 'sandbox') {
-        this.baseUrl = 'https://sandbox-rest.avatax.com';
-      } else if (typeof environment !== "undefined" && (environment.substring(0, 8) == 'https://' || environment.substring(0, 7) == 'http://')) {
-        this.baseUrl = environment;
-      } // Set all of the info on the instance so the callers do not have to pass in the ApiClient to every API.
+    if (environment === 'sandbox') {
+      this.baseUrl = 'https://sandbox-rest.avatax.com';
+    } else if (environment === 'production') {
+      this.baseUrl = 'https://rest.avatax.com';
+    } else {
+      throw new Error('Environment not configured correctly, Acceptable values are "production" and "sandbox".');
+    }
 
+    this.appName = appName;
+    this.appVersion = appVersion;
+    this.machineName = machineName;
+    this.timeout = timeout;
 
-      ApiClient.instance.appName = this.appName = appName;
-      ApiClient.instance.appVersion = this.appVersion = appVersion;
-      ApiClient.instance.machineName = this.machineName = machineName;
-      ApiClient.instance.timeout = this.timeout = timeout;
-      ApiClient.instance.baseUrl = this.baseUrl;
+    if (username != null && password != null) {
+      this.auth = this.createBasicAuthHeader(username, password);
+    } else if (bearerToken != null) {
+      this.auth = 'Bearer ' + bearerToken;
     }
   }
   /**
-   * Configure this client to use the specified username/password security settings
-   *
-   * @param  string          username        The username for your AvaTax user account
-   * @param  string          password        The password for your AvaTax user account
-   * @param  int             accountId       The account ID of your avatax account
-   * @param  string          licenseKey      The license key of your avatax account
-   * @param  string          bearerToken     The OAuth 2.0 token provided by Avalara Identity
-   * @return ApiClient
-   */
+  * Returns a string representation for an actual parameter.
+  * @param param The actual parameter.
+  * @returns {String} The string representation of <code>param</code>.
+  */
 
 
   _createClass(ApiClient, [{
-    key: "withSecurity",
-    value: function withSecurity(_ref) {
-      var username = _ref.username,
-          password = _ref.password,
-          accountId = _ref.accountId,
-          licenseKey = _ref.licenseKey,
-          bearerToken = _ref.bearerToken;
-
-      if (username != null && password != null) {
-        this.auth = this.createBasicAuthHeader(username, password);
-      } else if (accountId != null && licenseKey != null) {
-        this.auth = this.createBasicAuthHeader(accountId, licenseKey);
-      } else if (bearerToken != null) {
-        this.auth = 'Bearer ' + bearerToken;
-      } // Add auth config to the instance ApiClient in case the caller is not passing in the ApiClient to each API.
-
-
-      ApiClient.instance.auth = this.auth;
-      return this;
-    }
-    /**
-    * Returns a string representation for an actual parameter.
-    * @param param The actual parameter.
-    * @returns {String} The string representation of <code>param</code>.
-    */
-
-  }, {
     key: "paramToString",
     value: function paramToString(param) {
       if (param == undefined || param == null) {
@@ -793,6 +776,5 @@ ApiClient.CollectionFormatEnum = {
    */
   MULTI: 'multi'
 };
-ApiClient.instance = new ApiClient();
 var _default = ApiClient;
 exports["default"] = _default;

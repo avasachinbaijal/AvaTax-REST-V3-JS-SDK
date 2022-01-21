@@ -24,7 +24,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 /**
 * AgeVerification service.
 * @module api/AgeVerificationApi
-* @version 22.1.0
+* @version 2.1.5
 */
 var AgeVerificationApi = /*#__PURE__*/function () {
   /**

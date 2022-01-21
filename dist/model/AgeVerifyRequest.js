@@ -20,7 +20,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 /**
  * The AgeVerifyRequest model module.
  * @module model/AgeVerifyRequest
- * @version 22.1.0
+ * @version 2.1.5
  */
 var AgeVerifyRequest = /*#__PURE__*/function () {
   /**

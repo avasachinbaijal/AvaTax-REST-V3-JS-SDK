@@ -18,7 +18,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 /**
  * The ErrorDetailsErrorDetails model module.
  * @module model/ErrorDetailsErrorDetails
- * @version 22.1.0
+ * @version 2.1.5
  */
 var ErrorDetailsErrorDetails = /*#__PURE__*/function () {
   /**

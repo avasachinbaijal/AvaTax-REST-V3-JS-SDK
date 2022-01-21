@@ -18,7 +18,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 /**
  * The ShippingVerifyResultLines model module.
  * @module model/ShippingVerifyResultLines
- * @version 22.1.0
+ * @version 2.1.5
  */
 var ShippingVerifyResultLines = /*#__PURE__*/function () {
   /**
