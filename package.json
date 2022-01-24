@@ -1,14 +1,13 @@
 {
   "name": "avalara-sdk",
-  "version": "2.2.6",
+  "version": "2.2.8",
   "description": "API_for_evaluating_transactions_against_direct_to_consumer_Beverage_Alcohol_shipping_regulations_This_API_is_currently_in_beta_",
   "license": "Unlicense",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
     "prepare": "npm run build",
-    "test": "mocha --require @babel/register --recursive",
-    "integration-test": "mocha integration-test --require @babel/register --recursive"
+    "test": "mocha --require @babel/register --recursive"
   },
   "browser": {
     "fs": false
