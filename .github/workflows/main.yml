@@ -26,8 +26,12 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm ci
       - run: npm run build
-      # Run unit tests for the API code
-      - run: npm run test
+      - run: cd dist
+      - run: npm link
+      - run: cd ..
+      - run: npm link avalara-sdk
+      # Run Integration tests for the API code
+      - run: npm run integration-test --password=${{ secrets.API_PASSWORD }}
       - uses: actions/setup-node@v2
         with:
           node-version: 16
