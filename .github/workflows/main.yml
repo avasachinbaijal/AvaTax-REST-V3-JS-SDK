@@ -26,6 +26,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm ci
       - run: npm run build
+      # Run unit tests for the API code
+      - run: npm run test
       - uses: actions/setup-node@v2
         with:
           node-version: 16
@@ -33,4 +35,15 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
+  test-package:
+    needs: publish-npm
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - run: npm ci
+      # Install the latest version of the avalara SDK
+      - run: npm install avalara-sdk@*
+      - run: npm run integration-test --password=${{ secrets.API_PASSWORD }}
+
