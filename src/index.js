@@ -10,19 +10,19 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.1.7
+ * @version    2.2.0
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/AgeVerifyFailureCode', 'model/AgeVerifyRequest', 'model/AgeVerifyRequestAddress', 'model/AgeVerifyResult', 'model/ErrorDetails', 'model/ErrorDetailsError', 'model/ErrorDetailsErrorDetails', 'model/ShippingVerifyResult', 'model/ShippingVerifyResultLines', 'api/AgeVerificationApi', 'api/ShippingVerificationApi'], factory);
+    define(['ApiClient', 'model/AgeVerifyFailureCode', 'model/AgeVerifyRequest', 'model/AgeVerifyRequestAddress', 'model/AgeVerifyResult', 'api/AgeVerificationApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/AgeVerifyFailureCode'), require('./model/AgeVerifyRequest'), require('./model/AgeVerifyRequestAddress'), require('./model/AgeVerifyResult'), require('./model/ErrorDetails'), require('./model/ErrorDetailsError'), require('./model/ErrorDetailsErrorDetails'), require('./model/ShippingVerifyResult'), require('./model/ShippingVerifyResultLines'), require('./api/AgeVerificationApi'), require('./api/ShippingVerificationApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/AgeVerifyFailureCode'), require('./model/AgeVerifyRequest'), require('./model/AgeVerifyRequestAddress'), require('./model/AgeVerifyResult'), require('./api/AgeVerificationApi'));
   }
-}(function(ApiClient, AgeVerifyFailureCode, AgeVerifyRequest, AgeVerifyRequestAddress, AgeVerifyResult, ErrorDetails, ErrorDetailsError, ErrorDetailsErrorDetails, ShippingVerifyResult, ShippingVerifyResultLines, AgeVerificationApi, ShippingVerificationApi) {
+}(function(ApiClient, AgeVerifyFailureCode, AgeVerifyRequest, AgeVerifyRequestAddress, AgeVerifyResult, AgeVerificationApi) {
   'use strict';
 
   /**
@@ -54,9 +54,9 @@
    * </pre>
    * </p>
    * @module index
-   * @version 2.1.7
+   * @version 2.2.0
    */
-ApiClient.clientSdkVersion = '2.1.7';
+ApiClient.clientSdkVersion = '2.2.0';
   var exports = {
     /**
      * The ApiClient constructor.
@@ -84,40 +84,10 @@ ApiClient.clientSdkVersion = '2.1.7';
      */
     AgeVerifyResult: AgeVerifyResult.default,
     /**
-     * The ErrorDetails model constructor.
-     * @property {module:model/ErrorDetails}
-     */
-    ErrorDetails: ErrorDetails.default,
-    /**
-     * The ErrorDetailsError model constructor.
-     * @property {module:model/ErrorDetailsError}
-     */
-    ErrorDetailsError: ErrorDetailsError.default,
-    /**
-     * The ErrorDetailsErrorDetails model constructor.
-     * @property {module:model/ErrorDetailsErrorDetails}
-     */
-    ErrorDetailsErrorDetails: ErrorDetailsErrorDetails.default,
-    /**
-     * The ShippingVerifyResult model constructor.
-     * @property {module:model/ShippingVerifyResult}
-     */
-    ShippingVerifyResult: ShippingVerifyResult.default,
-    /**
-     * The ShippingVerifyResultLines model constructor.
-     * @property {module:model/ShippingVerifyResultLines}
-     */
-    ShippingVerifyResultLines: ShippingVerifyResultLines.default,
-    /**
      * The AgeVerificationApi service constructor.
      * @property {module:api/AgeVerificationApi}
      */
-    AgeVerificationApi: AgeVerificationApi.default,
-    /**
-     * The ShippingVerificationApi service constructor.
-     * @property {module:api/ShippingVerificationApi}
-     */
-    ShippingVerificationApi: ShippingVerificationApi.default
+    AgeVerificationApi: AgeVerificationApi.default
   };
 
   return exports;
