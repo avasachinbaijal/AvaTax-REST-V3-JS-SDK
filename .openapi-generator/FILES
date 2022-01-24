@@ -28,3 +28,14 @@ src/model/ErrorDetailsError.js
 src/model/ErrorDetailsErrorDetails.js
 src/model/ShippingVerifyResult.js
 src/model/ShippingVerifyResultLines.js
+test/api/AgeVerificationApi.spec.js
+test/api/ShippingVerificationApi.spec.js
+test/model/AgeVerifyFailureCode.spec.js
+test/model/AgeVerifyRequest.spec.js
+test/model/AgeVerifyRequestAddress.spec.js
+test/model/AgeVerifyResult.spec.js
+test/model/ErrorDetails.spec.js
+test/model/ErrorDetailsError.spec.js
+test/model/ErrorDetailsErrorDetails.spec.js
+test/model/ShippingVerifyResult.spec.js
+test/model/ShippingVerifyResultLines.spec.js
