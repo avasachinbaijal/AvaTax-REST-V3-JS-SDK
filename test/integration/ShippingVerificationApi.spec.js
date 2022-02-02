@@ -1,5 +1,6 @@
 var AvalaraSdk = require('avalara-sdk');
 var assert = require('assert');
+var username = process.env.npm_config_username;
 var password = process.env.npm_config_password;
 
 const config = {
@@ -8,7 +9,7 @@ const config = {
     environment: 'sandbox',
     machineName: 'test-machine',
     timeout:200000000,
-    username: 'demo.compliance-verification',
+    username,
     password
 };
 
