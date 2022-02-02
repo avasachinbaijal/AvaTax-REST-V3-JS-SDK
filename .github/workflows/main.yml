@@ -49,5 +49,5 @@ jobs:
       - run: npm ci
       # Install the latest version of the avalara SDK
       - run: npm install avalara-sdk@*
-      - run: npm run test --password=${{ secrets.API_PASSWORD }}
+      - run: npm run test --username=${{ secrets.API_USERNAME }} --password=${{ secrets.API_PASSWORD }}
 
