@@ -31,7 +31,7 @@ jobs:
       - run: cd ..
       - run: npm link avalara-sdk
       # Run Integration tests for the API code
-      - run: npm run test --password=${{ secrets.API_PASSWORD }}
+      - run: npm run test --username=${{ secrets.API_USERNAME }} --password=${{ secrets.API_PASSWORD }}
       - uses: actions/setup-node@v2
         with:
           node-version: 16
