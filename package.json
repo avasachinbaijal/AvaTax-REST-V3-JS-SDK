@@ -1,6 +1,6 @@
 {
   "name": "avalara-sdk",
-  "version": "2.2.9",
+  "version": "2.4.7",
   "description": "API_for_evaluating_transactions_against_direct_to_consumer_Beverage_Alcohol_shipping_regulations_This_API_is_currently_in_beta_",
   "license": "Unlicense",
   "main": "dist/index.js",
