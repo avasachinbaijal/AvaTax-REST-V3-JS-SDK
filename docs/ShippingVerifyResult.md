@@ -1,4 +1,4 @@
-# AvalaraSdk.ShippingVerifyResult
+# AvalaraShippingVerificationOnly.ShippingVerifyResult
 
 ## Properties
 
