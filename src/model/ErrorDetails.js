@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.7.6
+ * @version    2.4.12
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -20,7 +20,7 @@ import ErrorDetailsError from './ErrorDetailsError';
 /**
  * The ErrorDetails model module.
  * @module model/ErrorDetails
- * @version 2.4.7.6
+ * @version 2.4.12
  */
 class ErrorDetails {
     /**
