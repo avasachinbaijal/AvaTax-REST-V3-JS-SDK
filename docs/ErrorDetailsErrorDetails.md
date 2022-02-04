@@ -1,4 +1,4 @@
-# AvalaraSdk.ErrorDetailsErrorDetails
+# AvalaraShippingVerificationOnly.ErrorDetailsErrorDetails
 
 ## Properties
 
