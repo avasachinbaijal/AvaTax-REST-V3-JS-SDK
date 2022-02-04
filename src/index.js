@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.7.6
+ * @version    2.4.13-beta
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -31,9 +31,9 @@
    * <p>
    * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
    * <pre>
-   * var AvalaraSdk = require('index'); // See note below*.
-   * var xxxSvc = new AvalaraSdk.XxxApi(); // Allocate the API class we're going to use.
-   * var yyyModel = new AvalaraSdk.Yyy(); // Construct a model instance.
+   * var AvalaraShippingVerificationOnly = require('index'); // See note below*.
+   * var xxxSvc = new AvalaraShippingVerificationOnly.XxxApi(); // Allocate the API class we're going to use.
+   * var yyyModel = new AvalaraShippingVerificationOnly.Yyy(); // Construct a model instance.
    * yyyModel.someProperty = 'someValue';
    * ...
    * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -45,8 +45,8 @@
    * <p>
    * A non-AMD browser application (discouraged) might do something like this:
    * <pre>
-   * var xxxSvc = new AvalaraSdk.XxxApi(); // Allocate the API class we're going to use.
-   * var yyy = new AvalaraSdk.Yyy(); // Construct a model instance.
+   * var xxxSvc = new AvalaraShippingVerificationOnly.XxxApi(); // Allocate the API class we're going to use.
+   * var yyy = new AvalaraShippingVerificationOnly.Yyy(); // Construct a model instance.
    * yyyModel.someProperty = 'someValue';
    * ...
    * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -54,9 +54,9 @@
    * </pre>
    * </p>
    * @module index
-   * @version 2.4.7.6
+   * @version 2.4.13-beta
    */
-ApiClient.clientSdkVersion = '2.4.7.6';
+ApiClient.clientSdkVersion = '2.4.13-beta';
   var exports = {
     /**
      * The ApiClient constructor.

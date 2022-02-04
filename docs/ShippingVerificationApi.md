@@ -1,4 +1,4 @@
-# AvalaraSdk.ShippingVerificationApi
+# AvalaraShippingVerificationOnly.ShippingVerificationApi
 
 All URIs are relative to *http://localhost*
 
@@ -29,10 +29,10 @@ var configuration = {
     username: 'foo',
     password: 'bar'
 };
-var AvalaraSdk = require('avalara-sdk');
-var defaultClient = new AvalaraSdk.ApiClient(configuration);
+var AvalaraShippingVerificationOnly = require('avalara_shipping_verification_only');
+var defaultClient = new AvalaraShippingVerificationOnly.ApiClient(configuration);
 
-var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var apiInstance = new AvalaraShippingVerificationOnly.ShippingVerificationApi(defaultClient);
 var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 var opts = {
@@ -90,10 +90,10 @@ var configuration = {
     username: 'foo',
     password: 'bar'
 };
-var AvalaraSdk = require('avalara-sdk');
-var defaultClient = new AvalaraSdk.ApiClient(configuration);
+var AvalaraShippingVerificationOnly = require('avalara_shipping_verification_only');
+var defaultClient = new AvalaraShippingVerificationOnly.ApiClient(configuration);
 
-var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var apiInstance = new AvalaraShippingVerificationOnly.ShippingVerificationApi(defaultClient);
 var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 var opts = {
@@ -151,10 +151,10 @@ var configuration = {
     username: 'foo',
     password: 'bar'
 };
-var AvalaraSdk = require('avalara-sdk');
-var defaultClient = new AvalaraSdk.ApiClient(configuration);
+var AvalaraShippingVerificationOnly = require('avalara_shipping_verification_only');
+var defaultClient = new AvalaraShippingVerificationOnly.ApiClient(configuration);
 
-var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var apiInstance = new AvalaraShippingVerificationOnly.ShippingVerificationApi(defaultClient);
 var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 var opts = {
@@ -214,10 +214,10 @@ var configuration = {
     username: 'foo',
     password: 'bar'
 };
-var AvalaraSdk = require('avalara-sdk');
-var defaultClient = new AvalaraSdk.ApiClient(configuration);
+var AvalaraShippingVerificationOnly = require('avalara_shipping_verification_only');
+var defaultClient = new AvalaraShippingVerificationOnly.ApiClient(configuration);
 
-var apiInstance = new AvalaraSdk.ShippingVerificationApi(defaultClient);
+var apiInstance = new AvalaraShippingVerificationOnly.ShippingVerificationApi(defaultClient);
 var companyCode = "companyCode_example"; // String | The company code of the company that recorded the transaction
 var transactionCode = "transactionCode_example"; // String | The transaction code to retrieve
 var opts = {
