@@ -1,4 +1,4 @@
-# AvalaraSdk.AgeVerifyFailureCode
+# AvalaraShippingVerificationOnly.AgeVerifyFailureCode
 
 ## Enum
 

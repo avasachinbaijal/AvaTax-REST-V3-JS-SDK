@@ -1,4 +1,4 @@
-# AvalaraSdk.AgeVerifyResult
+# AvalaraShippingVerificationOnly.AgeVerifyResult
 
 ## Properties
 
