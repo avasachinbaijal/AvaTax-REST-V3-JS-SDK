@@ -1,4 +1,4 @@
-# AvalaraSdk.AgeVerificationApi
+# AvalaraShippingVerificationOnly.AgeVerificationApi
 
 All URIs are relative to *http://localhost*
 
@@ -28,13 +28,13 @@ var configuration = {
     username: 'foo',
     password: 'bar'
 };
-var AvalaraSdk = require('avalara-sdk');
-var defaultClient = new AvalaraSdk.ApiClient(configuration);
+var AvalaraShippingVerificationOnly = require('avalara_shipping_verification_only');
+var defaultClient = new AvalaraShippingVerificationOnly.ApiClient(configuration);
 
-var apiInstance = new AvalaraSdk.AgeVerificationApi(defaultClient);
-var ageVerifyRequest = new AvalaraSdk.AgeVerifyRequest(); // AgeVerifyRequest | Information about the individual whose age is being verified.
+var apiInstance = new AvalaraShippingVerificationOnly.AgeVerificationApi(defaultClient);
+var ageVerifyRequest = new AvalaraShippingVerificationOnly.AgeVerifyRequest(); // AgeVerifyRequest | Information about the individual whose age is being verified.
 var opts = {
-  'simulatedFailureCode': new AvalaraSdk.AgeVerifyFailureCode() // AgeVerifyFailureCode | (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes.
+  'simulatedFailureCode': new AvalaraShippingVerificationOnly.AgeVerifyFailureCode() // AgeVerifyFailureCode | (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes.
 };
 var callback = function(error, data, response) {
   if (error) {
