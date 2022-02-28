@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.27
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -54,9 +54,9 @@
    * </pre>
    * </p>
    * @module index
-   * @version 2.4.26
+   * @version 2.4.27
    */
-ApiClient.clientSdkVersion = '2.4.26';
+ApiClient.clientSdkVersion = '2.4.27';
   var exports = {
     /**
      * The ApiClient constructor.
