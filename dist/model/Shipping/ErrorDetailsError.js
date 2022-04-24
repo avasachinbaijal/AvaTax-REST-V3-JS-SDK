@@ -19,14 +19,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /**
  * The ErrorDetailsError model module.
- * @module model/ErrorDetailsError
- * @version 2.1.5
+ * @module model/Shipping/ErrorDetailsError
+ * @version 2.4.29
  */
 var ErrorDetailsError = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ErrorDetailsError</code>.
    * An object holding details about the error.
-   * @alias module:model/ErrorDetailsError
+   * @alias module:model/Shipping/ErrorDetailsError
    */
   function ErrorDetailsError() {
     _classCallCheck(this, ErrorDetailsError);
@@ -47,8 +47,8 @@ var ErrorDetailsError = /*#__PURE__*/function () {
      * Constructs a <code>ErrorDetailsError</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ErrorDetailsError} obj Optional instance to populate.
-     * @return {module:model/ErrorDetailsError} The populated <code>ErrorDetailsError</code> instance.
+     * @param {module:model/Shipping/ErrorDetailsError} obj Optional instance to populate.
+     * @return {module:model/Shipping/ErrorDetailsError} The populated <code>ErrorDetailsError</code> instance.
      */
 
   }, {
@@ -78,7 +78,7 @@ var ErrorDetailsError = /*#__PURE__*/function () {
 }();
 /**
  * Name of the error or message.
- * @member {module:model/ErrorDetailsError.CodeEnum} code
+ * @member {module:model/Shipping/ErrorDetailsError.CodeEnum} code
  */
 
 
@@ -90,7 +90,7 @@ ErrorDetailsError.prototype['code'] = undefined;
 
 ErrorDetailsError.prototype['message'] = undefined;
 /**
- * @member {module:model/ErrorDetailsErrorDetails} details
+ * @member {module:model/Shipping/ErrorDetailsErrorDetails} details
  */
 
 ErrorDetailsError.prototype['details'] = undefined;

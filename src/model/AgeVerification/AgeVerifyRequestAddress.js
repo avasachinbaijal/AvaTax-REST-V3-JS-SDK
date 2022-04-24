@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -18,13 +18,13 @@ import ApiClient from '../ApiClient';
 
 /**
  * The AgeVerifyRequestAddress model module.
- * @module model/AgeVerifyRequestAddress
- * @version 2.4.26
+ * @module model/AgeVerification/AgeVerifyRequestAddress
+ * @version 2.4.29
  */
 class AgeVerifyRequestAddress {
     /**
      * Constructs a new <code>AgeVerifyRequestAddress</code>.
-     * @alias module:model/AgeVerifyRequestAddress
+     * @alias module:model/AgeVerification/AgeVerifyRequestAddress
      */
     constructor() { 
         
@@ -43,8 +43,8 @@ class AgeVerifyRequestAddress {
      * Constructs a <code>AgeVerifyRequestAddress</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerifyRequestAddress} obj Optional instance to populate.
-     * @return {module:model/AgeVerifyRequestAddress} The populated <code>AgeVerifyRequestAddress</code> instance.
+     * @param {module:model/AgeVerification/AgeVerifyRequestAddress} obj Optional instance to populate.
+     * @return {module:model/AgeVerification/AgeVerifyRequestAddress} The populated <code>AgeVerifyRequestAddress</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -90,7 +90,7 @@ AgeVerifyRequestAddress.prototype['region'] = undefined;
 
 /**
  * The country code of the address.
- * @member {module:model/AgeVerifyRequestAddress.CountryEnum} country
+ * @member {module:model/AgeVerification/AgeVerifyRequestAddress.CountryEnum} country
  */
 AgeVerifyRequestAddress.prototype['country'] = undefined;
 

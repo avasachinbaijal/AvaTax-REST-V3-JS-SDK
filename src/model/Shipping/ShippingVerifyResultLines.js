@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -18,13 +18,13 @@ import ApiClient from '../ApiClient';
 
 /**
  * The ShippingVerifyResultLines model module.
- * @module model/ShippingVerifyResultLines
- * @version 2.4.26
+ * @module model/Shipping/ShippingVerifyResultLines
+ * @version 2.4.29
  */
 class ShippingVerifyResultLines {
     /**
      * Constructs a new <code>ShippingVerifyResultLines</code>.
-     * @alias module:model/ShippingVerifyResultLines
+     * @alias module:model/Shipping/ShippingVerifyResultLines
      */
     constructor() { 
         
@@ -43,8 +43,8 @@ class ShippingVerifyResultLines {
      * Constructs a <code>ShippingVerifyResultLines</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ShippingVerifyResultLines} obj Optional instance to populate.
-     * @return {module:model/ShippingVerifyResultLines} The populated <code>ShippingVerifyResultLines</code> instance.
+     * @param {module:model/Shipping/ShippingVerifyResultLines} obj Optional instance to populate.
+     * @return {module:model/Shipping/ShippingVerifyResultLines} The populated <code>ShippingVerifyResultLines</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -77,7 +77,7 @@ class ShippingVerifyResultLines {
 
 /**
  * Describes whether the line is compliant or not. In cases where a determination could not be made, resultCode will provide the reason why.
- * @member {module:model/ShippingVerifyResultLines.ResultCodeEnum} resultCode
+ * @member {module:model/Shipping/ShippingVerifyResultLines.ResultCodeEnum} resultCode
  */
 ShippingVerifyResultLines.prototype['resultCode'] = undefined;
 
@@ -107,7 +107,7 @@ ShippingVerifyResultLines.prototype['failureMessages'] = undefined;
 
 /**
  * An enumeration of all the failure codes received for this line.
- * @member {Array.<module:model/ShippingVerifyResultLines.FailureCodesEnum>} failureCodes
+ * @member {Array.<module:model/Shipping/ShippingVerifyResultLines.FailureCodesEnum>} failureCodes
  */
 ShippingVerifyResultLines.prototype['failureCodes'] = undefined;
 

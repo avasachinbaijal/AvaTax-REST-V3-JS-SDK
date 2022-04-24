@@ -7,6 +7,8 @@ exports["default"] = void 0;
 
 var _ApiClient = _interopRequireDefault(require("../ApiClient"));
 
+var _ShippingVerifyResultLines = _interopRequireDefault(require("./ShippingVerifyResultLines"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16,19 +18,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 /**
- * The ShippingVerifyResultLines model module.
- * @module model/ShippingVerifyResultLines
- * @version 2.1.5
+ * The ShippingVerifyResult model module.
+ * @module model/Shipping/ShippingVerifyResult
+ * @version 2.4.29
  */
-var ShippingVerifyResultLines = /*#__PURE__*/function () {
+var ShippingVerifyResult = /*#__PURE__*/function () {
   /**
-   * Constructs a new <code>ShippingVerifyResultLines</code>.
-   * @alias module:model/ShippingVerifyResultLines
+   * Constructs a new <code>ShippingVerifyResult</code>.
+   * The Response of the /shippingverify endpoint. Describes the result of checking all applicable shipping rules against each line in the transaction.
+   * @alias module:model/Shipping/ShippingVerifyResult
    */
-  function ShippingVerifyResultLines() {
-    _classCallCheck(this, ShippingVerifyResultLines);
+  function ShippingVerifyResult() {
+    _classCallCheck(this, ShippingVerifyResult);
 
-    ShippingVerifyResultLines.initialize(this);
+    ShippingVerifyResult.initialize(this);
   }
   /**
    * Initializes the fields of this object.
@@ -37,29 +40,25 @@ var ShippingVerifyResultLines = /*#__PURE__*/function () {
    */
 
 
-  _createClass(ShippingVerifyResultLines, null, [{
+  _createClass(ShippingVerifyResult, null, [{
     key: "initialize",
     value: function initialize(obj) {}
     /**
-     * Constructs a <code>ShippingVerifyResultLines</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ShippingVerifyResult</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ShippingVerifyResultLines} obj Optional instance to populate.
-     * @return {module:model/ShippingVerifyResultLines} The populated <code>ShippingVerifyResultLines</code> instance.
+     * @param {module:model/Shipping/ShippingVerifyResult} obj Optional instance to populate.
+     * @return {module:model/Shipping/ShippingVerifyResult} The populated <code>ShippingVerifyResult</code> instance.
      */
 
   }, {
     key: "constructFromObject",
     value: function constructFromObject(data, obj) {
       if (data) {
-        obj = obj || new ShippingVerifyResultLines();
+        obj = obj || new ShippingVerifyResult();
 
-        if (data.hasOwnProperty('resultCode')) {
-          obj['resultCode'] = _ApiClient["default"].convertToType(data['resultCode'], 'String');
-        }
-
-        if (data.hasOwnProperty('lineNumber')) {
-          obj['lineNumber'] = _ApiClient["default"].convertToType(data['lineNumber'], 'String');
+        if (data.hasOwnProperty('compliant')) {
+          obj['compliant'] = _ApiClient["default"].convertToType(data['compliant'], 'Boolean');
         }
 
         if (data.hasOwnProperty('message')) {
@@ -77,95 +76,72 @@ var ShippingVerifyResultLines = /*#__PURE__*/function () {
         if (data.hasOwnProperty('failureCodes')) {
           obj['failureCodes'] = _ApiClient["default"].convertToType(data['failureCodes'], ['String']);
         }
+
+        if (data.hasOwnProperty('warningCodes')) {
+          obj['warningCodes'] = _ApiClient["default"].convertToType(data['warningCodes'], ['String']);
+        }
+
+        if (data.hasOwnProperty('lines')) {
+          obj['lines'] = _ApiClient["default"].convertToType(data['lines'], [_ShippingVerifyResultLines["default"]]);
+        }
       }
 
       return obj;
     }
   }]);
 
-  return ShippingVerifyResultLines;
+  return ShippingVerifyResult;
 }();
 /**
- * Describes whether the line is compliant or not. In cases where a determination could not be made, resultCode will provide the reason why.
- * @member {module:model/ShippingVerifyResultLines.ResultCodeEnum} resultCode
+ * Whether every line in the transaction is compliant.
+ * @member {Boolean} compliant
  */
 
 
-ShippingVerifyResultLines.prototype['resultCode'] = undefined;
+ShippingVerifyResult.prototype['compliant'] = undefined;
 /**
- * The lineNumber of the line evaluated.
- * @member {String} lineNumber
- */
-
-ShippingVerifyResultLines.prototype['lineNumber'] = undefined;
-/**
- * A short description of the result of the checks made against this line.
+ * A short description of the result of the compliance check.
  * @member {String} message
  */
 
-ShippingVerifyResultLines.prototype['message'] = undefined;
+ShippingVerifyResult.prototype['message'] = undefined;
 /**
- * A detailed description of the result of each of the passed checks made against this line.
+ * A detailed description of the result of each of the passed checks made against this transaction, separated by line.
  * @member {String} successMessages
  */
 
-ShippingVerifyResultLines.prototype['successMessages'] = undefined;
+ShippingVerifyResult.prototype['successMessages'] = undefined;
 /**
- * A detailed description of the result of each of the failed checks made against this line.
+ * A detailed description of the result of each of the failed checks made against this transaction, separated by line.
  * @member {String} failureMessages
  */
 
-ShippingVerifyResultLines.prototype['failureMessages'] = undefined;
+ShippingVerifyResult.prototype['failureMessages'] = undefined;
 /**
- * An enumeration of all the failure codes received for this line.
- * @member {Array.<module:model/ShippingVerifyResultLines.FailureCodesEnum>} failureCodes
+ * An enumeration of all the failure codes received across all lines.
+ * @member {Array.<module:model/Shipping/ShippingVerifyResult.FailureCodesEnum>} failureCodes
  */
 
-ShippingVerifyResultLines.prototype['failureCodes'] = undefined;
+ShippingVerifyResult.prototype['failureCodes'] = undefined;
 /**
- * Allowed values for the <code>resultCode</code> property.
- * @enum {String}
- * @readonly
+ * An enumeration of all the warning codes received across all lines that a determination could not be made for.
+ * @member {Array.<module:model/Shipping/ShippingVerifyResult.WarningCodesEnum>} warningCodes
  */
 
-ShippingVerifyResultLines['ResultCodeEnum'] = {
-  /**
-   * value: "Compliant"
-   * @const
-   */
-  "Compliant": "Compliant",
+ShippingVerifyResult.prototype['warningCodes'] = undefined;
+/**
+ * Describes the results of the checks made for each line in the transaction.
+ * @member {Array.<module:model/Shipping/ShippingVerifyResultLines>} lines
+ */
 
-  /**
-   * value: "NotCompliant"
-   * @const
-   */
-  "NotCompliant": "NotCompliant",
-
-  /**
-   * value: "UnsupportedTaxCode"
-   * @const
-   */
-  "UnsupportedTaxCode": "UnsupportedTaxCode",
-
-  /**
-   * value: "UnsupportedAddress"
-   * @const
-   */
-  "UnsupportedAddress": "UnsupportedAddress",
-
-  /**
-   * value: "InvalidLine"
-   * @const
-   */
-  "InvalidLine": "InvalidLine"
-};
+ShippingVerifyResult.prototype['lines'] = undefined;
 /**
  * Allowed values for the <code>failureCodes</code> property.
  * @enum {String}
  * @readonly
  */
 
-ShippingVerifyResultLines['FailureCodesEnum'] = {
+ShippingVerifyResult['FailureCodesEnum'] = {
   /**
    * value: "BelowLegalDrinkingAge"
    * @const
@@ -220,5 +196,24 @@ ShippingVerifyResultLines['FailureCodesEnum'] = {
    */
   "InvalidDate": "InvalidDate"
 };
-var _default = ShippingVerifyResultLines;
+/**
+ * Allowed values for the <code>warningCodes</code> property.
+ * @enum {String}
+ * @readonly
+ */
+
+ShippingVerifyResult['WarningCodesEnum'] = {
+  /**
+   * value: "UnsupportedTaxCode"
+   * @const
+   */
+  "UnsupportedTaxCode": "UnsupportedTaxCode",
+
+  /**
+   * value: "UnsupportedAddress"
+   * @const
+   */
+  "UnsupportedAddress": "UnsupportedAddress"
+};
+var _default = ShippingVerifyResult;
 exports["default"] = _default;

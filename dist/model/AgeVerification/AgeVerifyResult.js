@@ -7,8 +7,6 @@ exports["default"] = void 0;
 
 var _ApiClient = _interopRequireDefault(require("../ApiClient"));
 
-var _ErrorDetailsError = _interopRequireDefault(require("./ErrorDetailsError"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18,20 +16,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 /**
- * The ErrorDetails model module.
- * @module model/ErrorDetails
- * @version 2.1.5
+ * The AgeVerifyResult model module.
+ * @module model/AgeVerification/AgeVerifyResult
+ * @version 2.4.29
  */
-var ErrorDetails = /*#__PURE__*/function () {
+var AgeVerifyResult = /*#__PURE__*/function () {
   /**
-   * Constructs a new <code>ErrorDetails</code>.
-   * Message Object
-   * @alias module:model/ErrorDetails
+   * Constructs a new <code>AgeVerifyResult</code>.
+   * The Result of a call to the /ageVerification/verify endpoint.
+   * @alias module:model/AgeVerification/AgeVerifyResult
    */
-  function ErrorDetails() {
-    _classCallCheck(this, ErrorDetails);
+  function AgeVerifyResult() {
+    _classCallCheck(this, AgeVerifyResult);
 
-    ErrorDetails.initialize(this);
+    AgeVerifyResult.initialize(this);
   }
   /**
    * Initializes the fields of this object.
@@ -40,25 +38,29 @@ var ErrorDetails = /*#__PURE__*/function () {
    */
 
 
-  _createClass(ErrorDetails, null, [{
+  _createClass(AgeVerifyResult, null, [{
     key: "initialize",
     value: function initialize(obj) {}
     /**
-     * Constructs a <code>ErrorDetails</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>AgeVerifyResult</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ErrorDetails} obj Optional instance to populate.
-     * @return {module:model/ErrorDetails} The populated <code>ErrorDetails</code> instance.
+     * @param {module:model/AgeVerification/AgeVerifyResult} obj Optional instance to populate.
+     * @return {module:model/AgeVerification/AgeVerifyResult} The populated <code>AgeVerifyResult</code> instance.
      */
 
   }, {
     key: "constructFromObject",
     value: function constructFromObject(data, obj) {
       if (data) {
-        obj = obj || new ErrorDetails();
+        obj = obj || new AgeVerifyResult();
 
-        if (data.hasOwnProperty('error')) {
-          obj['error'] = _ErrorDetailsError["default"].constructFromObject(data['error']);
+        if (data.hasOwnProperty('isOfAge')) {
+          obj['isOfAge'] = _ApiClient["default"].convertToType(data['isOfAge'], 'Boolean');
+        }
+
+        if (data.hasOwnProperty('failureCodes')) {
+          obj['failureCodes'] = _ApiClient["default"].convertToType(data['failureCodes'], [AgeVerifyResult]);
         }
       }
 
@@ -66,13 +68,20 @@ var ErrorDetails = /*#__PURE__*/function () {
     }
   }]);
 
-  return ErrorDetails;
+  return AgeVerifyResult;
 }();
 /**
- * @member {module:model/ErrorDetailsError} error
+ * Describes whether the individual meets or exceeds the minimum legal drinking age.
+ * @member {Boolean} isOfAge
  */
 
 
-ErrorDetails.prototype['error'] = undefined;
-var _default = ErrorDetails;
+AgeVerifyResult.prototype['isOfAge'] = undefined;
+/**
+ * A list of failure codes describing why a *false* age determination was made.
+ * @member {Array.<module:model/AgeVerification/AgeVerifyResult>} failureCodes
+ */
+
+AgeVerifyResult.prototype['failureCodes'] = undefined;
+var _default = AgeVerifyResult;
 exports["default"] = _default;

@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -68,7 +68,7 @@ export default class AgeVerifyFailureCode {
     /**
     * Returns a <code>AgeVerifyFailureCode</code> enum value from a Javascript object name.
     * @param {Object} data The plain JavaScript object containing the name of the enum value.
-    * @return {module:model/AgeVerifyFailureCode} The enum <code>AgeVerifyFailureCode</code> value.
+    * @return {module:model/AgeVerification/AgeVerifyFailureCode} The enum <code>AgeVerifyFailureCode</code> value.
     */
     static constructFromObject(object) {
         return object;

@@ -17,14 +17,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /**
  * The ErrorDetailsErrorDetails model module.
- * @module model/ErrorDetailsErrorDetails
- * @version 2.1.5
+ * @module model/Shipping/ErrorDetailsErrorDetails
+ * @version 2.4.29
  */
 var ErrorDetailsErrorDetails = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ErrorDetailsErrorDetails</code>.
    * Message Details Object
-   * @alias module:model/ErrorDetailsErrorDetails
+   * @alias module:model/Shipping/ErrorDetailsErrorDetails
    */
   function ErrorDetailsErrorDetails() {
     _classCallCheck(this, ErrorDetailsErrorDetails);
@@ -45,8 +45,8 @@ var ErrorDetailsErrorDetails = /*#__PURE__*/function () {
      * Constructs a <code>ErrorDetailsErrorDetails</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ErrorDetailsErrorDetails} obj Optional instance to populate.
-     * @return {module:model/ErrorDetailsErrorDetails} The populated <code>ErrorDetailsErrorDetails</code> instance.
+     * @param {module:model/Shipping/ErrorDetailsErrorDetails} obj Optional instance to populate.
+     * @return {module:model/Shipping/ErrorDetailsErrorDetails} The populated <code>ErrorDetailsErrorDetails</code> instance.
      */
 
   }, {
@@ -92,7 +92,7 @@ var ErrorDetailsErrorDetails = /*#__PURE__*/function () {
 }();
 /**
  * Name of the error or message.
- * @member {module:model/ErrorDetailsErrorDetails.CodeEnum} code
+ * @member {module:model/Shipping/ErrorDetailsErrorDetails.CodeEnum} code
  */
 
 
@@ -129,7 +129,7 @@ ErrorDetailsErrorDetails.prototype['faultCode'] = undefined;
 ErrorDetailsErrorDetails.prototype['helpLink'] = undefined;
 /**
  * Severity of the message
- * @member {module:model/ErrorDetailsErrorDetails.SeverityEnum} severity
+ * @member {module:model/Shipping/ErrorDetailsErrorDetails.SeverityEnum} severity
  */
 
 ErrorDetailsErrorDetails.prototype['severity'] = undefined;

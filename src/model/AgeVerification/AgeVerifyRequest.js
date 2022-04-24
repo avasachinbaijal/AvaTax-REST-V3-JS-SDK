@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -19,14 +19,14 @@ import AgeVerifyRequestAddress from './AgeVerifyRequestAddress';
 
 /**
  * The AgeVerifyRequest model module.
- * @module model/AgeVerifyRequest
- * @version 2.4.26
+ * @module model/AgeVerification/AgeVerifyRequest
+ * @version 2.4.29
  */
 class AgeVerifyRequest {
     /**
      * Constructs a new <code>AgeVerifyRequest</code>.
      * The Request for the /ageVerification/verify endpoint. Describes information about the person whose age is being verified.
-     * @alias module:model/AgeVerifyRequest
+     * @alias module:model/AgeVerification/AgeVerifyRequest
      */
     constructor() { 
         
@@ -45,8 +45,8 @@ class AgeVerifyRequest {
      * Constructs a <code>AgeVerifyRequest</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerifyRequest} obj Optional instance to populate.
-     * @return {module:model/AgeVerifyRequest} The populated <code>AgeVerifyRequest</code> instance.
+     * @param {module:model/AgeVerification/AgeVerifyRequest} obj Optional instance to populate.
+     * @return {module:model/AgeVerification/AgeVerifyRequest} The populated <code>AgeVerifyRequest</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -82,7 +82,7 @@ AgeVerifyRequest.prototype['firstName'] = undefined;
 AgeVerifyRequest.prototype['lastName'] = undefined;
 
 /**
- * @member {module:model/AgeVerifyRequestAddress} address
+ * @member {module:model/AgeVerification/AgeVerifyRequestAddress} address
  */
 AgeVerifyRequest.prototype['address'] = undefined;
 

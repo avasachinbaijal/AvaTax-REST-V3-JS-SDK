@@ -45,7 +45,7 @@ var AgeVerifyFailureCode = /*#__PURE__*/function () {
     /**
     * Returns a <code>AgeVerifyFailureCode</code> enum value from a Javascript object name.
     * @param {Object} data The plain JavaScript object containing the name of the enum value.
-    * @return {module:model/AgeVerifyFailureCode} The enum <code>AgeVerifyFailureCode</code> value.
+    * @return {module:model/AgeVerification/AgeVerifyFailureCode} The enum <code>AgeVerifyFailureCode</code> value.
     */
     function constructFromObject(object) {
       return object;

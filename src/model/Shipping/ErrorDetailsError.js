@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -19,14 +19,14 @@ import ErrorDetailsErrorDetails from './ErrorDetailsErrorDetails';
 
 /**
  * The ErrorDetailsError model module.
- * @module model/ErrorDetailsError
- * @version 2.4.26
+ * @module model/Shipping/ErrorDetailsError
+ * @version 2.4.29
  */
 class ErrorDetailsError {
     /**
      * Constructs a new <code>ErrorDetailsError</code>.
      * An object holding details about the error.
-     * @alias module:model/ErrorDetailsError
+     * @alias module:model/Shipping/ErrorDetailsError
      */
     constructor() { 
         
@@ -45,8 +45,8 @@ class ErrorDetailsError {
      * Constructs a <code>ErrorDetailsError</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ErrorDetailsError} obj Optional instance to populate.
-     * @return {module:model/ErrorDetailsError} The populated <code>ErrorDetailsError</code> instance.
+     * @param {module:model/Shipping/ErrorDetailsError} obj Optional instance to populate.
+     * @return {module:model/Shipping/ErrorDetailsError} The populated <code>ErrorDetailsError</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -70,7 +70,7 @@ class ErrorDetailsError {
 
 /**
  * Name of the error or message.
- * @member {module:model/ErrorDetailsError.CodeEnum} code
+ * @member {module:model/Shipping/ErrorDetailsError.CodeEnum} code
  */
 ErrorDetailsError.prototype['code'] = undefined;
 
@@ -81,7 +81,7 @@ ErrorDetailsError.prototype['code'] = undefined;
 ErrorDetailsError.prototype['message'] = undefined;
 
 /**
- * @member {module:model/ErrorDetailsErrorDetails} details
+ * @member {module:model/Shipping/ErrorDetailsErrorDetails} details
  */
 ErrorDetailsError.prototype['details'] = undefined;
 

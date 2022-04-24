@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -19,14 +19,14 @@ import ShippingVerifyResultLines from './ShippingVerifyResultLines';
 
 /**
  * The ShippingVerifyResult model module.
- * @module model/ShippingVerifyResult
- * @version 2.4.26
+ * @module model/Shipping/ShippingVerifyResult
+ * @version 2.4.29
  */
 class ShippingVerifyResult {
     /**
      * Constructs a new <code>ShippingVerifyResult</code>.
      * The Response of the /shippingverify endpoint. Describes the result of checking all applicable shipping rules against each line in the transaction.
-     * @alias module:model/ShippingVerifyResult
+     * @alias module:model/Shipping/ShippingVerifyResult
      */
     constructor() { 
         
@@ -45,8 +45,8 @@ class ShippingVerifyResult {
      * Constructs a <code>ShippingVerifyResult</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ShippingVerifyResult} obj Optional instance to populate.
-     * @return {module:model/ShippingVerifyResult} The populated <code>ShippingVerifyResult</code> instance.
+     * @param {module:model/Shipping/ShippingVerifyResult} obj Optional instance to populate.
+     * @return {module:model/Shipping/ShippingVerifyResult} The populated <code>ShippingVerifyResult</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -106,19 +106,19 @@ ShippingVerifyResult.prototype['failureMessages'] = undefined;
 
 /**
  * An enumeration of all the failure codes received across all lines.
- * @member {Array.<module:model/ShippingVerifyResult.FailureCodesEnum>} failureCodes
+ * @member {Array.<module:model/Shipping/ShippingVerifyResult.FailureCodesEnum>} failureCodes
  */
 ShippingVerifyResult.prototype['failureCodes'] = undefined;
 
 /**
  * An enumeration of all the warning codes received across all lines that a determination could not be made for.
- * @member {Array.<module:model/ShippingVerifyResult.WarningCodesEnum>} warningCodes
+ * @member {Array.<module:model/Shipping/ShippingVerifyResult.WarningCodesEnum>} warningCodes
  */
 ShippingVerifyResult.prototype['warningCodes'] = undefined;
 
 /**
  * Describes the results of the checks made for each line in the transaction.
- * @member {Array.<module:model/ShippingVerifyResultLines>} lines
+ * @member {Array.<module:model/Shipping/ShippingVerifyResultLines>} lines
  */
 ShippingVerifyResult.prototype['lines'] = undefined;
 

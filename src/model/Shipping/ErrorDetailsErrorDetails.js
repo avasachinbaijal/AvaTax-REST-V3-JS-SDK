@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -18,14 +18,14 @@ import ApiClient from '../ApiClient';
 
 /**
  * The ErrorDetailsErrorDetails model module.
- * @module model/ErrorDetailsErrorDetails
- * @version 2.4.26
+ * @module model/Shipping/ErrorDetailsErrorDetails
+ * @version 2.4.29
  */
 class ErrorDetailsErrorDetails {
     /**
      * Constructs a new <code>ErrorDetailsErrorDetails</code>.
      * Message Details Object
-     * @alias module:model/ErrorDetailsErrorDetails
+     * @alias module:model/Shipping/ErrorDetailsErrorDetails
      */
     constructor() { 
         
@@ -44,8 +44,8 @@ class ErrorDetailsErrorDetails {
      * Constructs a <code>ErrorDetailsErrorDetails</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ErrorDetailsErrorDetails} obj Optional instance to populate.
-     * @return {module:model/ErrorDetailsErrorDetails} The populated <code>ErrorDetailsErrorDetails</code> instance.
+     * @param {module:model/Shipping/ErrorDetailsErrorDetails} obj Optional instance to populate.
+     * @return {module:model/Shipping/ErrorDetailsErrorDetails} The populated <code>ErrorDetailsErrorDetails</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -81,7 +81,7 @@ class ErrorDetailsErrorDetails {
 
 /**
  * Name of the error or message.
- * @member {module:model/ErrorDetailsErrorDetails.CodeEnum} code
+ * @member {module:model/Shipping/ErrorDetailsErrorDetails.CodeEnum} code
  */
 ErrorDetailsErrorDetails.prototype['code'] = undefined;
 
@@ -117,7 +117,7 @@ ErrorDetailsErrorDetails.prototype['helpLink'] = undefined;
 
 /**
  * Severity of the message
- * @member {module:model/ErrorDetailsErrorDetails.SeverityEnum} severity
+ * @member {module:model/Shipping/ErrorDetailsErrorDetails.SeverityEnum} severity
  */
 ErrorDetailsErrorDetails.prototype['severity'] = undefined;
 

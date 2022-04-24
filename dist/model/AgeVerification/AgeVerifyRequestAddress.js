@@ -17,13 +17,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /**
  * The AgeVerifyRequestAddress model module.
- * @module model/AgeVerifyRequestAddress
- * @version 2.1.5
+ * @module model/AgeVerification/AgeVerifyRequestAddress
+ * @version 2.4.29
  */
 var AgeVerifyRequestAddress = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>AgeVerifyRequestAddress</code>.
-   * @alias module:model/AgeVerifyRequestAddress
+   * @alias module:model/AgeVerification/AgeVerifyRequestAddress
    */
   function AgeVerifyRequestAddress() {
     _classCallCheck(this, AgeVerifyRequestAddress);
@@ -44,8 +44,8 @@ var AgeVerifyRequestAddress = /*#__PURE__*/function () {
      * Constructs a <code>AgeVerifyRequestAddress</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerifyRequestAddress} obj Optional instance to populate.
-     * @return {module:model/AgeVerifyRequestAddress} The populated <code>AgeVerifyRequestAddress</code> instance.
+     * @param {module:model/AgeVerification/AgeVerifyRequestAddress} obj Optional instance to populate.
+     * @return {module:model/AgeVerification/AgeVerifyRequestAddress} The populated <code>AgeVerifyRequestAddress</code> instance.
      */
 
   }, {
@@ -100,7 +100,7 @@ AgeVerifyRequestAddress.prototype['city'] = undefined;
 AgeVerifyRequestAddress.prototype['region'] = undefined;
 /**
  * The country code of the address.
- * @member {module:model/AgeVerifyRequestAddress.CountryEnum} country
+ * @member {module:model/AgeVerification/AgeVerifyRequestAddress.CountryEnum} country
  */
 
 AgeVerifyRequestAddress.prototype['country'] = undefined;

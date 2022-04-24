@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -18,14 +18,14 @@ import ApiClient from '../ApiClient';
 
 /**
  * The AgeVerifyResult model module.
- * @module model/AgeVerifyResult
- * @version 2.4.26
+ * @module model/AgeVerification/AgeVerifyResult
+ * @version 2.4.29
  */
 class AgeVerifyResult {
     /**
      * Constructs a new <code>AgeVerifyResult</code>.
      * The Result of a call to the /ageVerification/verify endpoint.
-     * @alias module:model/AgeVerifyResult
+     * @alias module:model/AgeVerification/AgeVerifyResult
      */
     constructor() { 
         
@@ -44,8 +44,8 @@ class AgeVerifyResult {
      * Constructs a <code>AgeVerifyResult</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerifyResult} obj Optional instance to populate.
-     * @return {module:model/AgeVerifyResult} The populated <code>AgeVerifyResult</code> instance.
+     * @param {module:model/AgeVerification/AgeVerifyResult} obj Optional instance to populate.
+     * @return {module:model/AgeVerification/AgeVerifyResult} The populated <code>AgeVerifyResult</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -72,7 +72,7 @@ AgeVerifyResult.prototype['isOfAge'] = undefined;
 
 /**
  * A list of failure codes describing why a *false* age determination was made.
- * @member {Array.<module:model/AgeVerifyResult>} failureCodes
+ * @member {Array.<module:model/AgeVerification/AgeVerifyResult>} failureCodes
  */
 AgeVerifyResult.prototype['failureCodes'] = undefined;
 

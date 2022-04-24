@@ -10,24 +10,24 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
 
-import ErrorDetails from '../model/ErrorDetails';
-import ShippingVerifyResult from '../model/ShippingVerifyResult';
+import ErrorDetails from '../../model/Shipping/ErrorDetails';
+import ShippingVerifyResult from '../../model/Shipping/ShippingVerifyResult';
 
 /**
 * ShippingVerification service.
-* @module api/ShippingVerificationApi
-* @version 2.4.26
+* @module api/Shipping/ShippingVerificationApi
+* @version 2.4.29
 */
 export default class ShippingVerificationApi {
 
     /**
     * Constructs a new ShippingVerificationApi. 
-    * @alias module:api/ShippingVerificationApi
+    * @alias module:api/Shipping/ShippingVerificationApi
     * @class
     * @param {module:ApiClient} [apiClient] API client implementation to use
     */
@@ -41,7 +41,7 @@ export default class ShippingVerificationApi {
 
     /**
      * Callback function to receive the result of the deregisterShipment operation.
-     * @callback module:api/ShippingVerificationApi~deregisterShipmentCallback
+     * @callback module:api/Shipping/ShippingVerificationApi~deregisterShipmentCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -52,8 +52,8 @@ export default class ShippingVerificationApi {
      * @param {String} companyCode The company code of the company that recorded the transaction
      * @param {String} transactionCode The transaction code to retrieve
      * @param {Object} opts Optional parameters
-     * @param {module:model/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
-     * @param {module:api/ShippingVerificationApi~deregisterShipmentCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:model/Shipping/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
+     * @param {module:api/Shipping/ShippingVerificationApi~deregisterShipmentCallback} callback The callback function, accepting three arguments: error, data, response
      */
     deregisterShipment(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
@@ -92,7 +92,7 @@ export default class ShippingVerificationApi {
 
     /**
      * Callback function to receive the result of the registerShipment operation.
-     * @callback module:api/ShippingVerificationApi~registerShipmentCallback
+     * @callback module:api/Shipping/ShippingVerificationApi~registerShipmentCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -103,8 +103,8 @@ export default class ShippingVerificationApi {
      * @param {String} companyCode The company code of the company that recorded the transaction
      * @param {String} transactionCode The transaction code to retrieve
      * @param {Object} opts Optional parameters
-     * @param {module:model/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
-     * @param {module:api/ShippingVerificationApi~registerShipmentCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:model/Shipping/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
+     * @param {module:api/Shipping/ShippingVerificationApi~registerShipmentCallback} callback The callback function, accepting three arguments: error, data, response
      */
     registerShipment(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
@@ -143,9 +143,9 @@ export default class ShippingVerificationApi {
 
     /**
      * Callback function to receive the result of the registerShipmentIfCompliant operation.
-     * @callback module:api/ShippingVerificationApi~registerShipmentIfCompliantCallback
+     * @callback module:api/Shipping/ShippingVerificationApi~registerShipmentIfCompliantCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/ShippingVerifyResult} data The data returned by the service call.
+     * @param {module:model/Shipping/ShippingVerifyResult} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -154,9 +154,9 @@ export default class ShippingVerificationApi {
      * @param {String} companyCode The company code of the company that recorded the transaction
      * @param {String} transactionCode The transaction code to retrieve
      * @param {Object} opts Optional parameters
-     * @param {module:model/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
-     * @param {module:api/ShippingVerificationApi~registerShipmentIfCompliantCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ShippingVerifyResult}
+     * @param {module:model/Shipping/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
+     * @param {module:api/Shipping/ShippingVerificationApi~registerShipmentIfCompliantCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/Shipping/ShippingVerifyResult}
      */
     registerShipmentIfCompliant(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
@@ -195,9 +195,9 @@ export default class ShippingVerificationApi {
 
     /**
      * Callback function to receive the result of the verifyShipment operation.
-     * @callback module:api/ShippingVerificationApi~verifyShipmentCallback
+     * @callback module:api/Shipping/ShippingVerificationApi~verifyShipmentCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/ShippingVerifyResult} data The data returned by the service call.
+     * @param {module:model/Shipping/ShippingVerifyResult} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -207,9 +207,9 @@ export default class ShippingVerificationApi {
      * @param {String} companyCode The company code of the company that recorded the transaction
      * @param {String} transactionCode The transaction code to retrieve
      * @param {Object} opts Optional parameters
-     * @param {module:model/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
-     * @param {module:api/ShippingVerificationApi~verifyShipmentCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ShippingVerifyResult}
+     * @param {module:model/Shipping/String} opts.documentType (Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\"
+     * @param {module:api/Shipping/ShippingVerificationApi~verifyShipmentCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/Shipping/ShippingVerifyResult}
      */
     verifyShipment(companyCode, transactionCode, opts, callback) {
       opts = opts || {};

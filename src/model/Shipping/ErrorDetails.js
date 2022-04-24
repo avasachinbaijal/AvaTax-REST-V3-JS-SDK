@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.26
+ * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -19,14 +19,14 @@ import ErrorDetailsError from './ErrorDetailsError';
 
 /**
  * The ErrorDetails model module.
- * @module model/ErrorDetails
- * @version 2.4.26
+ * @module model/Shipping/ErrorDetails
+ * @version 2.4.29
  */
 class ErrorDetails {
     /**
      * Constructs a new <code>ErrorDetails</code>.
      * Message Object
-     * @alias module:model/ErrorDetails
+     * @alias module:model/Shipping/ErrorDetails
      */
     constructor() { 
         
@@ -45,8 +45,8 @@ class ErrorDetails {
      * Constructs a <code>ErrorDetails</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ErrorDetails} obj Optional instance to populate.
-     * @return {module:model/ErrorDetails} The populated <code>ErrorDetails</code> instance.
+     * @param {module:model/Shipping/ErrorDetails} obj Optional instance to populate.
+     * @return {module:model/Shipping/ErrorDetails} The populated <code>ErrorDetails</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
@@ -63,7 +63,7 @@ class ErrorDetails {
 }
 
 /**
- * @member {module:model/ErrorDetailsError} error
+ * @member {module:model/Shipping/ErrorDetailsError} error
  */
 ErrorDetails.prototype['error'] = undefined;
 

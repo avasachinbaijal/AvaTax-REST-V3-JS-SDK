@@ -19,14 +19,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /**
  * The AgeVerifyRequest model module.
- * @module model/AgeVerifyRequest
- * @version 2.1.5
+ * @module model/AgeVerification/AgeVerifyRequest
+ * @version 2.4.29
  */
 var AgeVerifyRequest = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>AgeVerifyRequest</code>.
    * The Request for the /ageVerification/verify endpoint. Describes information about the person whose age is being verified.
-   * @alias module:model/AgeVerifyRequest
+   * @alias module:model/AgeVerification/AgeVerifyRequest
    */
   function AgeVerifyRequest() {
     _classCallCheck(this, AgeVerifyRequest);
@@ -47,8 +47,8 @@ var AgeVerifyRequest = /*#__PURE__*/function () {
      * Constructs a <code>AgeVerifyRequest</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerifyRequest} obj Optional instance to populate.
-     * @return {module:model/AgeVerifyRequest} The populated <code>AgeVerifyRequest</code> instance.
+     * @param {module:model/AgeVerification/AgeVerifyRequest} obj Optional instance to populate.
+     * @return {module:model/AgeVerification/AgeVerifyRequest} The populated <code>AgeVerifyRequest</code> instance.
      */
 
   }, {
@@ -92,7 +92,7 @@ AgeVerifyRequest.prototype['firstName'] = undefined;
 
 AgeVerifyRequest.prototype['lastName'] = undefined;
 /**
- * @member {module:model/AgeVerifyRequestAddress} address
+ * @member {module:model/AgeVerification/AgeVerifyRequestAddress} address
  */
 
 AgeVerifyRequest.prototype['address'] = undefined;
