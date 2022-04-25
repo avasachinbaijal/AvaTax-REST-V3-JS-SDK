@@ -14,7 +14,7 @@
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
-import ApiClient from '../ApiClient';
+import ApiClient from '../../../ApiClient';
 
 /**
  * The ErrorDetailsErrorDetails model module.
