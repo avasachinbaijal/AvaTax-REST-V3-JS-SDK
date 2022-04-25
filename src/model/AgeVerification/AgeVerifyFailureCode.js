@@ -13,8 +13,7 @@
  * @version    2.4.29
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
-
-import ApiClient from '../../../ApiClient';
+ import ApiClient from '../../ApiClient';
 /**
 * Enum class AgeVerifyFailureCode.
 * @enum {}
