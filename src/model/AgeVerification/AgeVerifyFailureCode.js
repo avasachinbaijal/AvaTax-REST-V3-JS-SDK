@@ -10,10 +10,11 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.29
+ * @version    2.4.32
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
- import ApiClient from '../../ApiClient';
+
+import ApiClient from '../../ApiClient';
 /**
 * Enum class AgeVerifyFailureCode.
 * @enum {}
@@ -73,4 +74,3 @@ export default class AgeVerifyFailureCode {
         return object;
     }
 }
-

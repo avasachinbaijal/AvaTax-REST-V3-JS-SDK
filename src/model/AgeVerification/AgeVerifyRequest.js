@@ -10,17 +10,17 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.29
+ * @version    2.4.32
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
- import ApiClient from '../../ApiClient';
+import ApiClient from '../../ApiClient';
 import AgeVerifyRequestAddress from './AgeVerifyRequestAddress';
 
 /**
  * The AgeVerifyRequest model module.
  * @module model/AgeVerification/AgeVerifyRequest
- * @version 2.4.29
+ * @version 2.4.32
  */
 class AgeVerifyRequest {
     /**
@@ -98,4 +98,3 @@ AgeVerifyRequest.prototype['DOB'] = undefined;
 
 
 export default AgeVerifyRequest;
-
