@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.29
+ * @version    2.4.30
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -22,7 +22,7 @@ import AgeVerifyResult from '../../model/AgeVerification/AgeVerifyResult';
 /**
 * AgeVerification service.
 * @module api/AgeVerification/AgeVerificationApi
-* @version 2.4.29
+* @version 2.4.30
 */
 export default class AgeVerificationApi {
 
