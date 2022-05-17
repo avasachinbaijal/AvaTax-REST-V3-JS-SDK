@@ -15,22 +15,21 @@
  */
 
 import ApiClient from '../../ApiClient';
-import ErrorDetailsError from './ErrorDetailsError';
 
 /**
- * The ErrorDetails model module.
- * @module model/Shipping/ErrorDetails
+ * The Tag model module.
+ * @module model/IAMDS/Tag
  * @version 2.4.33
  */
-class ErrorDetails {
+class Tag {
     /**
-     * Constructs a new <code>ErrorDetails</code>.
-     * Message Object
-     * @alias module:model/Shipping/ErrorDetails
+     * Constructs a new <code>Tag</code>.
+     * Tags that can hold additional information about a resource
+     * @alias module:model/IAMDS/Tag
      */
     constructor() { 
         
-        ErrorDetails.initialize(this);
+        Tag.initialize(this);
     }
 
     /**
@@ -42,18 +41,21 @@ class ErrorDetails {
     }
 
     /**
-     * Constructs a <code>ErrorDetails</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>Tag</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/Shipping/ErrorDetails} obj Optional instance to populate.
-     * @return {module:model/Shipping/ErrorDetails} The populated <code>ErrorDetails</code> instance.
+     * @param {module:model/IAMDS/Tag} obj Optional instance to populate.
+     * @return {module:model/IAMDS/Tag} The populated <code>Tag</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new ErrorDetails();
+            obj = obj || new Tag();
 
-            if (data.hasOwnProperty('error')) {
-                obj['error'] = ErrorDetailsError.constructFromObject(data['error']);
+            if (data.hasOwnProperty('name')) {
+                obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            }
+            if (data.hasOwnProperty('value')) {
+                obj['value'] = ApiClient.convertToType(data['value'], 'String');
             }
         }
         return obj;
@@ -63,13 +65,20 @@ class ErrorDetails {
 }
 
 /**
- * @member {module:model/Shipping/ErrorDetailsError} error
+ * Name of the tag
+ * @member {String} name
  */
-ErrorDetails.prototype['error'] = undefined;
+Tag.prototype['name'] = undefined;
+
+/**
+ * User defined value
+ * @member {String} value
+ */
+Tag.prototype['value'] = undefined;
 
 
 
 
 
 
-export default ErrorDetails;
+export default Tag;
