@@ -15,22 +15,20 @@
  */
 
 import ApiClient from '../../ApiClient';
-import ErrorDetailsError from './ErrorDetailsError';
 
 /**
- * The ErrorDetails model module.
- * @module model/Shipping/ErrorDetails
+ * The ContactEmails model module.
+ * @module model/IAMDS/ContactEmails
  * @version 2.4.34
  */
-class ErrorDetails {
+class ContactEmails {
     /**
-     * Constructs a new <code>ErrorDetails</code>.
-     * Message Object
-     * @alias module:model/Shipping/ErrorDetails
+     * Constructs a new <code>ContactEmails</code>.
+     * @alias module:model/IAMDS/ContactEmails
      */
     constructor() { 
         
-        ErrorDetails.initialize(this);
+        ContactEmails.initialize(this);
     }
 
     /**
@@ -42,18 +40,21 @@ class ErrorDetails {
     }
 
     /**
-     * Constructs a <code>ErrorDetails</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ContactEmails</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/Shipping/ErrorDetails} obj Optional instance to populate.
-     * @return {module:model/Shipping/ErrorDetails} The populated <code>ErrorDetails</code> instance.
+     * @param {module:model/IAMDS/ContactEmails} obj Optional instance to populate.
+     * @return {module:model/IAMDS/ContactEmails} The populated <code>ContactEmails</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new ErrorDetails();
+            obj = obj || new ContactEmails();
 
-            if (data.hasOwnProperty('error')) {
-                obj['error'] = ErrorDetailsError.constructFromObject(data['error']);
+            if (data.hasOwnProperty('emailId')) {
+                obj['emailId'] = ApiClient.convertToType(data['emailId'], 'String');
+            }
+            if (data.hasOwnProperty('isPrimary')) {
+                obj['isPrimary'] = ApiClient.convertToType(data['isPrimary'], 'Boolean');
             }
         }
         return obj;
@@ -63,13 +64,20 @@ class ErrorDetails {
 }
 
 /**
- * @member {module:model/Shipping/ErrorDetailsError} error
+ * Email address of the contact
+ * @member {String} emailId
  */
-ErrorDetails.prototype['error'] = undefined;
+ContactEmails.prototype['emailId'] = undefined;
+
+/**
+ * Is this the primary email Id for the contact
+ * @member {Boolean} isPrimary
+ */
+ContactEmails.prototype['isPrimary'] = undefined;
 
 
 
 
 
 
-export default ErrorDetails;
+export default ContactEmails;

@@ -15,22 +15,21 @@
  */
 
 import ApiClient from '../../ApiClient';
-import AgeVerifyRequestAddress from './AgeVerifyRequestAddress';
 
 /**
- * The AgeVerifyRequest model module.
- * @module model/AgeVerification/AgeVerifyRequest
+ * The ContactName model module.
+ * @module model/IAMDS/ContactName
  * @version 2.4.34
  */
-class AgeVerifyRequest {
+class ContactName {
     /**
-     * Constructs a new <code>AgeVerifyRequest</code>.
-     * The Request for the /ageVerification/verify endpoint. Describes information about the person whose age is being verified.
-     * @alias module:model/AgeVerification/AgeVerifyRequest
+     * Constructs a new <code>ContactName</code>.
+     * Name of the contact
+     * @alias module:model/IAMDS/ContactName
      */
     constructor() { 
         
-        AgeVerifyRequest.initialize(this);
+        ContactName.initialize(this);
     }
 
     /**
@@ -42,27 +41,21 @@ class AgeVerifyRequest {
     }
 
     /**
-     * Constructs a <code>AgeVerifyRequest</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ContactName</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerification/AgeVerifyRequest} obj Optional instance to populate.
-     * @return {module:model/AgeVerification/AgeVerifyRequest} The populated <code>AgeVerifyRequest</code> instance.
+     * @param {module:model/IAMDS/ContactName} obj Optional instance to populate.
+     * @return {module:model/IAMDS/ContactName} The populated <code>ContactName</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new AgeVerifyRequest();
+            obj = obj || new ContactName();
 
             if (data.hasOwnProperty('firstName')) {
                 obj['firstName'] = ApiClient.convertToType(data['firstName'], 'String');
             }
             if (data.hasOwnProperty('lastName')) {
                 obj['lastName'] = ApiClient.convertToType(data['lastName'], 'String');
-            }
-            if (data.hasOwnProperty('address')) {
-                obj['address'] = AgeVerifyRequestAddress.constructFromObject(data['address']);
-            }
-            if (data.hasOwnProperty('DOB')) {
-                obj['DOB'] = ApiClient.convertToType(data['DOB'], 'String');
             }
         }
         return obj;
@@ -72,29 +65,20 @@ class AgeVerifyRequest {
 }
 
 /**
+ * First Name
  * @member {String} firstName
  */
-AgeVerifyRequest.prototype['firstName'] = undefined;
+ContactName.prototype['firstName'] = undefined;
 
 /**
+ * Last Name
  * @member {String} lastName
  */
-AgeVerifyRequest.prototype['lastName'] = undefined;
-
-/**
- * @member {module:model/AgeVerification/AgeVerifyRequestAddress} address
- */
-AgeVerifyRequest.prototype['address'] = undefined;
-
-/**
- * The value should be ISO-8601 compliant (e.g. 2020-07-21).
- * @member {String} DOB
- */
-AgeVerifyRequest.prototype['DOB'] = undefined;
+ContactName.prototype['lastName'] = undefined;
 
 
 
 
 
 
-export default AgeVerifyRequest;
+export default ContactName;
