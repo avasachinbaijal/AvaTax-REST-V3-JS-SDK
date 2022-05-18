@@ -16,59 +16,38 @@
 
 import ApiClient from '../../ApiClient';
 /**
-* Enum class AgeVerifyFailureCode.
+* Enum class VersionError.
 * @enum {}
 * @readonly
 */
-export default class AgeVerifyFailureCode {
+export default class VersionError {
     
         /**
-         * value: "not_found"
+         * value: "version-too-new"
          * @const
          */
-        "not_found" = "not_found";
+        "too-new" = "version-too-new";
 
     
         /**
-         * value: "dob_unverifiable"
+         * value: "version-too-old"
          * @const
          */
-        "dob_unverifiable" = "dob_unverifiable";
+        "too-old" = "version-too-old";
 
     
         /**
-         * value: "under_age"
+         * value: "version-not-valid"
          * @const
          */
-        "under_age" = "under_age";
-
-    
-        /**
-         * value: "suspected_fraud"
-         * @const
-         */
-        "suspected_fraud" = "suspected_fraud";
-
-    
-        /**
-         * value: "deceased"
-         * @const
-         */
-        "deceased" = "deceased";
-
-    
-        /**
-         * value: "unknown_error"
-         * @const
-         */
-        "unknown_error" = "unknown_error";
+        "not-valid" = "version-not-valid";
 
     
 
     /**
-    * Returns a <code>AgeVerifyFailureCode</code> enum value from a Javascript object name.
+    * Returns a <code>VersionError</code> enum value from a Javascript object name.
     * @param {Object} data The plain JavaScript object containing the name of the enum value.
-    * @return {module:model/AgeVerification/AgeVerifyFailureCode} The enum <code>AgeVerifyFailureCode</code> value.
+    * @return {module:model/IAMDS/VersionError} The enum <code>VersionError</code> value.
     */
     static constructFromObject(object) {
         return object;
