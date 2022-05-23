@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.32
+ * @version    2.4.36
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -21,7 +21,7 @@ import ShippingVerifyResult from '../../model/Shipping/ShippingVerifyResult';
 /**
 * ShippingVerification service.
 * @module api/Shipping/ShippingVerificationApi
-* @version 2.4.32
+* @version 2.4.36
 */
 export default class ShippingVerificationApi {
 

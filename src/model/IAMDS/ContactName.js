@@ -15,22 +15,21 @@
  */
 
 import ApiClient from '../../ApiClient';
-import ErrorDetailsError from './ErrorDetailsError';
 
 /**
- * The ErrorDetails model module.
- * @module model/Shipping/ErrorDetails
+ * The ContactName model module.
+ * @module model/IAMDS/ContactName
  * @version 2.4.36
  */
-class ErrorDetails {
+class ContactName {
     /**
-     * Constructs a new <code>ErrorDetails</code>.
-     * Message Object
-     * @alias module:model/Shipping/ErrorDetails
+     * Constructs a new <code>ContactName</code>.
+     * Name of the contact
+     * @alias module:model/IAMDS/ContactName
      */
     constructor() { 
         
-        ErrorDetails.initialize(this);
+        ContactName.initialize(this);
     }
 
     /**
@@ -42,18 +41,21 @@ class ErrorDetails {
     }
 
     /**
-     * Constructs a <code>ErrorDetails</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ContactName</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/Shipping/ErrorDetails} obj Optional instance to populate.
-     * @return {module:model/Shipping/ErrorDetails} The populated <code>ErrorDetails</code> instance.
+     * @param {module:model/IAMDS/ContactName} obj Optional instance to populate.
+     * @return {module:model/IAMDS/ContactName} The populated <code>ContactName</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new ErrorDetails();
+            obj = obj || new ContactName();
 
-            if (data.hasOwnProperty('error')) {
-                obj['error'] = ErrorDetailsError.constructFromObject(data['error']);
+            if (data.hasOwnProperty('firstName')) {
+                obj['firstName'] = ApiClient.convertToType(data['firstName'], 'String');
+            }
+            if (data.hasOwnProperty('lastName')) {
+                obj['lastName'] = ApiClient.convertToType(data['lastName'], 'String');
             }
         }
         return obj;
@@ -63,13 +65,20 @@ class ErrorDetails {
 }
 
 /**
- * @member {module:model/Shipping/ErrorDetailsError} error
+ * First Name
+ * @member {String} firstName
  */
-ErrorDetails.prototype['error'] = undefined;
+ContactName.prototype['firstName'] = undefined;
+
+/**
+ * Last Name
+ * @member {String} lastName
+ */
+ContactName.prototype['lastName'] = undefined;
 
 
 
 
 
 
-export default ErrorDetails;
+export default ContactName;
