@@ -1,21 +1,35 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/**
+ * AvaTax Software Development Kit for JavaScript
+ *
+ * (c) 2004-2022 Avalara, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author     Sachin Baijal <sachin.baijal@avalara.com>
+ * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
+ * @copyright  2004-2022 Avalara, Inc.
+ * @license    https://www.apache.org/licenses/LICENSE-2.0
+ * @version    2.4.36
+ * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
+ */
 
 /**
 * Enum class AgeVerifyFailureCode.
@@ -24,22 +38,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 */
 var AgeVerifyFailureCode = /*#__PURE__*/function () {
   function AgeVerifyFailureCode() {
-    _classCallCheck(this, AgeVerifyFailureCode);
-
-    _defineProperty(this, "not_found", "not_found");
-
-    _defineProperty(this, "dob_unverifiable", "dob_unverifiable");
-
-    _defineProperty(this, "under_age", "under_age");
-
-    _defineProperty(this, "suspected_fraud", "suspected_fraud");
-
-    _defineProperty(this, "deceased", "deceased");
-
-    _defineProperty(this, "unknown_error", "unknown_error");
+    (0, _classCallCheck2["default"])(this, AgeVerifyFailureCode);
+    (0, _defineProperty2["default"])(this, "not_found", "not_found");
+    (0, _defineProperty2["default"])(this, "dob_unverifiable", "dob_unverifiable");
+    (0, _defineProperty2["default"])(this, "under_age", "under_age");
+    (0, _defineProperty2["default"])(this, "suspected_fraud", "suspected_fraud");
+    (0, _defineProperty2["default"])(this, "deceased", "deceased");
+    (0, _defineProperty2["default"])(this, "unknown_error", "unknown_error");
   }
 
-  _createClass(AgeVerifyFailureCode, null, [{
+  (0, _createClass2["default"])(AgeVerifyFailureCode, null, [{
     key: "constructFromObject",
     value:
     /**
@@ -51,7 +59,6 @@ var AgeVerifyFailureCode = /*#__PURE__*/function () {
       return object;
     }
   }]);
-
   return AgeVerifyFailureCode;
 }();
 

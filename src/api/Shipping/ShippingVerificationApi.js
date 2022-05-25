@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.32
+ * @version    2.4.36
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -21,7 +21,7 @@ import ShippingVerifyResult from '../../model/Shipping/ShippingVerifyResult';
 /**
 * ShippingVerification service.
 * @module api/Shipping/ShippingVerificationApi
-* @version 2.4.32
+* @version 2.4.36
 */
 export default class ShippingVerificationApi {
 
@@ -36,6 +36,7 @@ export default class ShippingVerificationApi {
             throw new Error('apiClient is a required parameter.');
         }
         this.apiClient = apiClient;
+        this.apiClient.sdkVersion = '2.4.36';
     }
 
 
@@ -78,7 +79,8 @@ export default class ShippingVerificationApi {
       };
       let formParams = {
       };
-
+      //OAuth2 Scopes
+      let requiredScopes = "";
       let authNames = ['BasicAuth', 'Bearer'];
       let contentTypes = [];
       let accepts = ['application/json'];
@@ -86,7 +88,7 @@ export default class ShippingVerificationApi {
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null, callback, requiredScopes
       );
     }
 
@@ -129,7 +131,8 @@ export default class ShippingVerificationApi {
       };
       let formParams = {
       };
-
+      //OAuth2 Scopes
+      let requiredScopes = "";
       let authNames = ['BasicAuth', 'Bearer'];
       let contentTypes = [];
       let accepts = ['application/json'];
@@ -137,7 +140,7 @@ export default class ShippingVerificationApi {
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null, callback, requiredScopes
       );
     }
 
@@ -181,7 +184,8 @@ export default class ShippingVerificationApi {
       };
       let formParams = {
       };
-
+      //OAuth2 Scopes
+      let requiredScopes = "";
       let authNames = ['BasicAuth', 'Bearer'];
       let contentTypes = [];
       let accepts = ['application/json'];
@@ -189,7 +193,7 @@ export default class ShippingVerificationApi {
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null, callback, requiredScopes
       );
     }
 
@@ -234,7 +238,8 @@ export default class ShippingVerificationApi {
       };
       let formParams = {
       };
-
+      //OAuth2 Scopes
+      let requiredScopes = "";
       let authNames = ['BasicAuth', 'Bearer'];
       let contentTypes = [];
       let accepts = ['application/json'];
@@ -242,7 +247,7 @@ export default class ShippingVerificationApi {
       return this.apiClient.callApi(
         '/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null, callback, requiredScopes
       );
     }
 

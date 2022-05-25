@@ -1,24 +1,38 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 
-var _ApiClient = _interopRequireDefault(require("../ApiClient"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+/**
+ * AvaTax Software Development Kit for JavaScript
+ *
+ * (c) 2004-2022 Avalara, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author     Sachin Baijal <sachin.baijal@avalara.com>
+ * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
+ * @copyright  2004-2022 Avalara, Inc.
+ * @license    https://www.apache.org/licenses/LICENSE-2.0
+ * @version    2.4.36
+ * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
+ */
 
 /**
  * The ShippingVerifyResultLines model module.
  * @module model/Shipping/ShippingVerifyResultLines
- * @version 2.4.29
+ * @version 2.4.36
  */
 var ShippingVerifyResultLines = /*#__PURE__*/function () {
   /**
@@ -26,8 +40,7 @@ var ShippingVerifyResultLines = /*#__PURE__*/function () {
    * @alias module:model/Shipping/ShippingVerifyResultLines
    */
   function ShippingVerifyResultLines() {
-    _classCallCheck(this, ShippingVerifyResultLines);
-
+    (0, _classCallCheck2["default"])(this, ShippingVerifyResultLines);
     ShippingVerifyResultLines.initialize(this);
   }
   /**
@@ -37,7 +50,7 @@ var ShippingVerifyResultLines = /*#__PURE__*/function () {
    */
 
 
-  _createClass(ShippingVerifyResultLines, null, [{
+  (0, _createClass2["default"])(ShippingVerifyResultLines, null, [{
     key: "initialize",
     value: function initialize(obj) {}
     /**
@@ -82,7 +95,6 @@ var ShippingVerifyResultLines = /*#__PURE__*/function () {
       return obj;
     }
   }]);
-
   return ShippingVerifyResultLines;
 }();
 /**
