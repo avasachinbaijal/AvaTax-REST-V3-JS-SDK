@@ -10,7 +10,7 @@
  * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
  * @copyright  2004-2022 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    2.4.32
+ * @version    2.4.36
  * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
  */
 
@@ -22,7 +22,7 @@ import AgeVerifyResult from '../../model/AgeVerification/AgeVerifyResult';
 /**
 * AgeVerification service.
 * @module api/AgeVerification/AgeVerificationApi
-* @version 2.4.32
+* @version 2.4.36
 */
 export default class AgeVerificationApi {
 
@@ -37,6 +37,7 @@ export default class AgeVerificationApi {
             throw new Error('apiClient is a required parameter.');
         }
         this.apiClient = apiClient;
+        this.apiClient.sdkVersion = '2.4.36';
     }
 
 
@@ -74,7 +75,8 @@ export default class AgeVerificationApi {
       };
       let formParams = {
       };
-
+      //OAuth2 Scopes
+      let requiredScopes = "";
       let authNames = ['BasicAuth', 'Bearer'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
@@ -82,7 +84,7 @@ export default class AgeVerificationApi {
       return this.apiClient.callApi(
         '/api/v2/ageverification/verify', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
+        authNames, contentTypes, accepts, returnType, null, callback, requiredScopes
       );
     }
 

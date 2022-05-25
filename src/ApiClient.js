@@ -43,6 +43,10 @@
      * @param {string} configuration.username        The username for your AvaTax user account
      * @param {string} configuration.password        The password for your AvaTax user account
      * @param {string} configuration.bearerToken     The OAuth 2.0 token provided by Avalara Identity
+     * @param {string} configuration.clientId        The ClientId used for the OAuth2 Client Credentials flow
+     * @param {string} configuration.clientSecret    The ClientSecret used for the OAuth2 Client Credentials flow
+     * @param {string} configuration.testBasePath    The Test Base Path to be used for local development for calling the Avalara APIs 
+     * @param {string} configuration.testTokenUrl    The Test Token URL to be used for local development to invoke the OAuth2 flow
      */
      constructor(configuration) {
          if (!configuration) {
@@ -109,26 +113,52 @@
           * Allow user to add superagent plugins
           */
          this.plugins = null;
+
+         this.accessTokenMap = new Map();
  
          // Setup configuration options for the ApiClient.
-         const { appName, appVersion, bearerToken, machineName, environment, timeout, username, password } = configuration;
-         if (environment === 'sandbox') {
-            this.baseUrl = 'https://sandbox-rest.avatax.com';
-         } else if (environment === 'production') {
-            this.baseUrl = 'https://rest.avatax.com';      
-         } else {
-            throw new Error('Environment not configured correctly, Acceptable values are "production" and "sandbox".');
-         }
-
+         const { appName, appVersion, bearerToken, clientId, clientSecret, machineName, environment, timeout, username, password, testBasePath, testTokenUrl } = configuration;
          this.appName = appName;
          this.appVersion = appVersion;
          this.machineName = machineName;
          this.timeout = timeout;
+         this.clientId = clientId;
+         this.clientSecret = clientSecret;
+         this.username = username;
+         this.password = password;
+         this.bearerToken = bearerToken;
+         this.setBasePath(environment, testBasePath);
+         this.setTokenUrl(environment, testTokenUrl);
+     }
 
-         if (username != null && password != null) {
-            this.auth = this.createBasicAuthHeader(username, password);
-         } else if (bearerToken != null) {
-            this.auth = 'Bearer ' + bearerToken;
+     setBasePath(environment, testBasePath) {
+        if (environment === 'sandbox') {
+            this.baseUrl = 'https://sandbox-rest.avatax.com';
+         } else if (environment === 'production') {
+            this.baseUrl = 'https://rest.avatax.com';     
+         } else if (environment === 'test') {
+            if (!testBasePath) {
+                throw new Error('TestBasePath must be configured to run in test environment mode.');
+            }
+            this.baseUrl = testBasePath; 
+         } else {
+            throw new Error('Environment not configured correctly, Acceptable values are "production", "sandbox", and "test".');
+         }
+     }
+
+     setTokenUrl(environment, testTokenUrl) {
+         const prodTokenUrl = 'https://TO-BE-SET';
+         const sandboxTokenUrl = 'https://TO-BE-SET';
+         switch (environment) {
+            case 'production':
+                this.tokenUrl = prodTokenUrl;
+                break;
+            case 'sandbox':
+                this.tokenUrl = sandboxTokenUrl;
+                break;
+            case 'test':
+                this.tokenUrl = testTokenUrl ? testTokenUrl : prodTokenUrl;
+                break;
          }
      }
  
@@ -326,10 +356,60 @@
      * Applies authentication headers to the request.
      * @param {Object} request The request object created by a <code>superagent()</code> call.
      * @param {Array.<String>} authNames An array of authentication method names.
+     * @param {String} requiredScopes A space delimited string of all the required OAuth2 scopes for a given API call.
      */
-     applyAuthToRequest(request, authNames) {
+     async applyAuthToRequest(request, authNames, requiredScopes) {
          // for now, only support basic and oauth types.
-         request.set({'Authorization': this.auth});
+        if (authNames.indexOf('OAuth') >= 0 && this.clientId && this.clientSecret) {
+            let scopes = this.standardizeScopes(requiredScopes);
+            let accessToken = this.getOAuthAccessToken(scopes);
+            if (!accessToken) {
+                await this.updateOAuthAccessToken(scopes);
+                accessToken = this.getOAuthAccessToken(scopes);
+            }
+            request.set({ 'Authorization': `Bearer ${accessToken}` });
+        } else if (this.username != null && this.password != null) {
+            request.set({ 'Authorization': this.createBasicAuthHeader(this.username, this.password) });
+        } else if (this.bearerToken != null) {
+            request.set({ 'Authorization': `Bearer ${this.bearerToken}` });
+        }
+     }
+
+     getOAuthAccessToken(scopes) {
+        return this.accessTokenMap.get(scopes);
+     }
+
+     async updateOAuthAccessToken(scopes, accessToken) {
+        const currentAccessToken = this.getOAuthAccessToken(scopes);
+        // If the current access token is not set, or the cached token equals the token passed in 
+        // (which will only be passed in, in the event the token failed due to being invalid or some other failure scenario)
+        if (!currentAccessToken || currentAccessToken === accessToken) {
+            try {
+                const res = await this.buildOAuthRequest(scopes);
+                const data = JSON.parse(res.text);
+                this.accessTokenMap.set(scopes, data['access_token']);
+            } catch (err) {
+                throw new Error(`OAuth2 Token retrieval failed. Error: ${err}`);
+            }
+        }
+     }
+
+     buildOAuthRequest(scopes) {
+        var request = superagent('POST', this.tokenUrl);
+        request.query({
+            'grant_type': 'client_credentials',
+            scope: scopes
+        });
+        request.set('Authorization', this.createBasicAuthHeader(this.clientId, this.clientSecret));
+        request.type('application/x-www-form-urlencoded');
+        request.accept('application/json');
+        return request;
+     }
+
+     standardizeScopes(requiredScopes) {
+         const strArr = requiredScopes.split(' ');
+         strArr.sort();
+         return strArr.join(' ');
      }
  
     /**
@@ -383,9 +463,9 @@
      * @param {module:ApiClient~callApiCallback} callback The callback function.
      * @returns {Object} The SuperAgent request object.
      */
-     callApi(path, httpMethod, pathParams,
+     async callApi(path, httpMethod, pathParams,
          queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts,
-         returnType, apiBasePath, callback) {
+         returnType, apiBasePath, callback, requiredScopes) {
  
          var url = this.buildUrl(path, pathParams, apiBasePath);
          var request = superagent(httpMethod, url);
@@ -397,9 +477,8 @@
                  }
              }
          }
- 
-         // apply authentications
-         this.applyAuthToRequest(request, authNames);
+         
+         await this.applyAuthToRequest(request, authNames, requiredScopes);
  
          // set query parameters
          if (httpMethod.toUpperCase() === 'GET' && this.cache === false) {
@@ -409,7 +488,7 @@
          request.query(this.normalizeParams(queryParams));
  
          // set header parameters
-         request.set({'X-Avalara-Client': `${this.appName}; ${this.appVersion}; JavascriptSdk; ${this.clientSdkVersion}; ${this.machineName}`});
+         request.set({'X-Avalara-Client': `${this.appName}; ${this.appVersion}; JavascriptSdk; ${this.sdkVersion}; ${this.machineName}`});
          request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
  
          // set requestAgent if it is set by user
@@ -492,7 +571,6 @@
                  callback(error, data, response);
              }
          });
- 
          return request;
      }
  
@@ -637,7 +715,7 @@
      };
  
      createBasicAuthHeader(account, licenseKey) {
-         const base64Encoded = new Buffer(`${account}:${licenseKey}`).toString(
+         const base64Encoded = Buffer.from(`${account}:${licenseKey}`).toString(
              'base64'
          );
          return `Basic ${base64Encoded}`;
