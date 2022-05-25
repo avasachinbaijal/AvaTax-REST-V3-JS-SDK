@@ -30,19 +30,19 @@ var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
  */
 
 /**
- * The AgeVerifyResult model module.
- * @module model/AgeVerification/AgeVerifyResult
+ * The ContactName model module.
+ * @module model/IAMDS/ContactName
  * @version 2.4.36
  */
-var AgeVerifyResult = /*#__PURE__*/function () {
+var ContactName = /*#__PURE__*/function () {
   /**
-   * Constructs a new <code>AgeVerifyResult</code>.
-   * The Result of a call to the /ageVerification/verify endpoint.
-   * @alias module:model/AgeVerification/AgeVerifyResult
+   * Constructs a new <code>ContactName</code>.
+   * Name of the contact
+   * @alias module:model/IAMDS/ContactName
    */
-  function AgeVerifyResult() {
-    (0, _classCallCheck2["default"])(this, AgeVerifyResult);
-    AgeVerifyResult.initialize(this);
+  function ContactName() {
+    (0, _classCallCheck2["default"])(this, ContactName);
+    ContactName.initialize(this);
   }
   /**
    * Initializes the fields of this object.
@@ -51,49 +51,49 @@ var AgeVerifyResult = /*#__PURE__*/function () {
    */
 
 
-  (0, _createClass2["default"])(AgeVerifyResult, null, [{
+  (0, _createClass2["default"])(ContactName, null, [{
     key: "initialize",
     value: function initialize(obj) {}
     /**
-     * Constructs a <code>AgeVerifyResult</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ContactName</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerification/AgeVerifyResult} obj Optional instance to populate.
-     * @return {module:model/AgeVerification/AgeVerifyResult} The populated <code>AgeVerifyResult</code> instance.
+     * @param {module:model/IAMDS/ContactName} obj Optional instance to populate.
+     * @return {module:model/IAMDS/ContactName} The populated <code>ContactName</code> instance.
      */
 
   }, {
     key: "constructFromObject",
     value: function constructFromObject(data, obj) {
       if (data) {
-        obj = obj || new AgeVerifyResult();
+        obj = obj || new ContactName();
 
-        if (data.hasOwnProperty('isOfAge')) {
-          obj['isOfAge'] = _ApiClient["default"].convertToType(data['isOfAge'], 'Boolean');
+        if (data.hasOwnProperty('firstName')) {
+          obj['firstName'] = _ApiClient["default"].convertToType(data['firstName'], 'String');
         }
 
-        if (data.hasOwnProperty('failureCodes')) {
-          obj['failureCodes'] = _ApiClient["default"].convertToType(data['failureCodes'], [AgeVerifyResult]);
+        if (data.hasOwnProperty('lastName')) {
+          obj['lastName'] = _ApiClient["default"].convertToType(data['lastName'], 'String');
         }
       }
 
       return obj;
     }
   }]);
-  return AgeVerifyResult;
+  return ContactName;
 }();
 /**
- * Describes whether the individual meets or exceeds the minimum legal drinking age.
- * @member {Boolean} isOfAge
+ * First Name
+ * @member {String} firstName
  */
 
 
-AgeVerifyResult.prototype['isOfAge'] = undefined;
+ContactName.prototype['firstName'] = undefined;
 /**
- * A list of failure codes describing why a *false* age determination was made.
- * @member {Array.<module:model/AgeVerification/AgeVerifyResult>} failureCodes
+ * Last Name
+ * @member {String} lastName
  */
 
-AgeVerifyResult.prototype['failureCodes'] = undefined;
-var _default = AgeVerifyResult;
+ContactName.prototype['lastName'] = undefined;
+var _default = ContactName;
 exports["default"] = _default;

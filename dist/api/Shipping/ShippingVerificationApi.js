@@ -1,26 +1,40 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
 var _ErrorDetails = _interopRequireDefault(require("../../model/Shipping/ErrorDetails"));
 
 var _ShippingVerifyResult = _interopRequireDefault(require("../../model/Shipping/ShippingVerifyResult"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+/**
+ * AvaTax Software Development Kit for JavaScript
+ *
+ * (c) 2004-2022 Avalara, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author     Sachin Baijal <sachin.baijal@avalara.com>
+ * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
+ * @copyright  2004-2022 Avalara, Inc.
+ * @license    https://www.apache.org/licenses/LICENSE-2.0
+ * @version    2.4.36
+ * @link       https://github.com/avadev/AvaTax-REST-V3-JS-SDK
+ */
 
 /**
 * ShippingVerification service.
 * @module api/Shipping/ShippingVerificationApi
-* @version 2.4.29
+* @version 2.4.36
 */
 var ShippingVerificationApi = /*#__PURE__*/function () {
   /**
@@ -30,13 +44,14 @@ var ShippingVerificationApi = /*#__PURE__*/function () {
   * @param {module:ApiClient} [apiClient] API client implementation to use
   */
   function ShippingVerificationApi(apiClient) {
-    _classCallCheck(this, ShippingVerificationApi);
+    (0, _classCallCheck2["default"])(this, ShippingVerificationApi);
 
     if (!apiClient) {
       throw new Error('apiClient is a required parameter.');
     }
 
     this.apiClient = apiClient;
+    this.apiClient.sdkVersion = '2.4.36';
   }
   /**
    * Callback function to receive the result of the deregisterShipment operation.
@@ -56,7 +71,7 @@ var ShippingVerificationApi = /*#__PURE__*/function () {
    */
 
 
-  _createClass(ShippingVerificationApi, [{
+  (0, _createClass2["default"])(ShippingVerificationApi, [{
     key: "deregisterShipment",
     value: function deregisterShipment(companyCode, transactionCode, opts, callback) {
       opts = opts || {};
@@ -79,12 +94,14 @@ var ShippingVerificationApi = /*#__PURE__*/function () {
         'documentType': opts['documentType']
       };
       var headerParams = {};
-      var formParams = {};
+      var formParams = {}; //OAuth2 Scopes
+
+      var requiredScopes = "";
       var authNames = ['BasicAuth', 'Bearer'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = null;
-      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'DELETE', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'DELETE', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback, requiredScopes);
     }
     /**
      * Callback function to receive the result of the registerShipment operation.
@@ -126,12 +143,14 @@ var ShippingVerificationApi = /*#__PURE__*/function () {
         'documentType': opts['documentType']
       };
       var headerParams = {};
-      var formParams = {};
+      var formParams = {}; //OAuth2 Scopes
+
+      var requiredScopes = "";
       var authNames = ['BasicAuth', 'Bearer'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = null;
-      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'PUT', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registration', 'PUT', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback, requiredScopes);
     }
     /**
      * Callback function to receive the result of the registerShipmentIfCompliant operation.
@@ -174,12 +193,14 @@ var ShippingVerificationApi = /*#__PURE__*/function () {
         'documentType': opts['documentType']
       };
       var headerParams = {};
-      var formParams = {};
+      var formParams = {}; //OAuth2 Scopes
+
+      var requiredScopes = "";
       var authNames = ['BasicAuth', 'Bearer'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = _ShippingVerifyResult["default"];
-      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant', 'PUT', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/registerIfCompliant', 'PUT', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback, requiredScopes);
     }
     /**
      * Callback function to receive the result of the verifyShipment operation.
@@ -223,15 +244,16 @@ var ShippingVerificationApi = /*#__PURE__*/function () {
         'documentType': opts['documentType']
       };
       var headerParams = {};
-      var formParams = {};
+      var formParams = {}; //OAuth2 Scopes
+
+      var requiredScopes = "";
       var authNames = ['BasicAuth', 'Bearer'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = _ShippingVerifyResult["default"];
-      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback);
+      return this.apiClient.callApi('/api/v2/companies/{companyCode}/transactions/{transactionCode}/shipment/verify', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType, null, callback, requiredScopes);
     }
   }]);
-
   return ShippingVerificationApi;
 }();
 

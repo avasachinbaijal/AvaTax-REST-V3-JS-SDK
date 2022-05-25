@@ -13,6 +13,8 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
 
+var _Group = _interopRequireDefault(require("./Group"));
+
 /**
  * AvaTax Software Development Kit for JavaScript
  *
@@ -30,19 +32,18 @@ var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
  */
 
 /**
- * The AgeVerifyResult model module.
- * @module model/AgeVerification/AgeVerifyResult
+ * The GroupList model module.
+ * @module model/IAMDS/GroupList
  * @version 2.4.36
  */
-var AgeVerifyResult = /*#__PURE__*/function () {
+var GroupList = /*#__PURE__*/function () {
   /**
-   * Constructs a new <code>AgeVerifyResult</code>.
-   * The Result of a call to the /ageVerification/verify endpoint.
-   * @alias module:model/AgeVerification/AgeVerifyResult
+   * Constructs a new <code>GroupList</code>.
+   * @alias module:model/IAMDS/GroupList
    */
-  function AgeVerifyResult() {
-    (0, _classCallCheck2["default"])(this, AgeVerifyResult);
-    AgeVerifyResult.initialize(this);
+  function GroupList() {
+    (0, _classCallCheck2["default"])(this, GroupList);
+    GroupList.initialize(this);
   }
   /**
    * Initializes the fields of this object.
@@ -51,49 +52,65 @@ var AgeVerifyResult = /*#__PURE__*/function () {
    */
 
 
-  (0, _createClass2["default"])(AgeVerifyResult, null, [{
+  (0, _createClass2["default"])(GroupList, null, [{
     key: "initialize",
     value: function initialize(obj) {}
     /**
-     * Constructs a <code>AgeVerifyResult</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>GroupList</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerification/AgeVerifyResult} obj Optional instance to populate.
-     * @return {module:model/AgeVerification/AgeVerifyResult} The populated <code>AgeVerifyResult</code> instance.
+     * @param {module:model/IAMDS/GroupList} obj Optional instance to populate.
+     * @return {module:model/IAMDS/GroupList} The populated <code>GroupList</code> instance.
      */
 
   }, {
     key: "constructFromObject",
     value: function constructFromObject(data, obj) {
       if (data) {
-        obj = obj || new AgeVerifyResult();
+        obj = obj || new GroupList();
 
-        if (data.hasOwnProperty('isOfAge')) {
-          obj['isOfAge'] = _ApiClient["default"].convertToType(data['isOfAge'], 'Boolean');
+        if (data.hasOwnProperty('@recordsetCount')) {
+          obj['@recordsetCount'] = _ApiClient["default"].convertToType(data['@recordsetCount'], 'Number');
         }
 
-        if (data.hasOwnProperty('failureCodes')) {
-          obj['failureCodes'] = _ApiClient["default"].convertToType(data['failureCodes'], [AgeVerifyResult]);
+        if (data.hasOwnProperty('@nextLink')) {
+          obj['@nextLink'] = _ApiClient["default"].convertToType(data['@nextLink'], 'String');
+        }
+
+        if (data.hasOwnProperty('pageKey')) {
+          obj['pageKey'] = _ApiClient["default"].convertToType(data['pageKey'], 'String');
+        }
+
+        if (data.hasOwnProperty('items')) {
+          obj['items'] = _ApiClient["default"].convertToType(data['items'], [_Group["default"]]);
         }
       }
 
       return obj;
     }
   }]);
-  return AgeVerifyResult;
+  return GroupList;
 }();
 /**
- * Describes whether the individual meets or exceeds the minimum legal drinking age.
- * @member {Boolean} isOfAge
+ * @member {Number} @recordsetCount
  */
 
 
-AgeVerifyResult.prototype['isOfAge'] = undefined;
+GroupList.prototype['@recordsetCount'] = undefined;
 /**
- * A list of failure codes describing why a *false* age determination was made.
- * @member {Array.<module:model/AgeVerification/AgeVerifyResult>} failureCodes
+ * @member {String} @nextLink
  */
 
-AgeVerifyResult.prototype['failureCodes'] = undefined;
-var _default = AgeVerifyResult;
+GroupList.prototype['@nextLink'] = undefined;
+/**
+ * @member {String} pageKey
+ */
+
+GroupList.prototype['pageKey'] = undefined;
+/**
+ * @member {Array.<module:model/IAMDS/Group>} items
+ */
+
+GroupList.prototype['items'] = undefined;
+var _default = GroupList;
 exports["default"] = _default;

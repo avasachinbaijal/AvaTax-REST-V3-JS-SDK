@@ -1,23 +1,41 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
 var _superagent = _interopRequireDefault(require("superagent"));
 
 var _querystring = _interopRequireDefault(require("querystring"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+/**
+ * AvaTax Software Development Kit for JavaScript
+ *
+ * (c) 2004-2022 Avalara, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author     Sachin Baijal <sachin.baijal@avalara.com>
+ * @author     Jonathan Wenger <jonathan.wenger@avalara.com>
+ * @copyright  2004-2022 Avalara, Inc.
+ * @license    https://www.apache.org/licenses/LICENSE-2.0
+ * @version    22.1.0
+ * @link       https://github.com/avadev/AvaTax-REST-V2-JS-SDK
+ */
 
 /**
 * @module ApiClient
@@ -45,9 +63,13 @@ var ApiClient = /*#__PURE__*/function () {
    * @param {string} configuration.username        The username for your AvaTax user account
    * @param {string} configuration.password        The password for your AvaTax user account
    * @param {string} configuration.bearerToken     The OAuth 2.0 token provided by Avalara Identity
+   * @param {string} configuration.clientId        The ClientId used for the OAuth2 Client Credentials flow
+   * @param {string} configuration.clientSecret    The ClientSecret used for the OAuth2 Client Credentials flow
+   * @param {string} configuration.testBasePath    The Test Base Path to be used for local development for calling the Avalara APIs 
+   * @param {string} configuration.testTokenUrl    The Test Token URL to be used for local development to invoke the OAuth2 flow
    */
   function ApiClient(configuration) {
-    _classCallCheck(this, ApiClient);
+    (0, _classCallCheck2["default"])(this, ApiClient);
 
     if (!configuration) {
       throw new Error('Configuration object is required.');
@@ -121,44 +143,78 @@ var ApiClient = /*#__PURE__*/function () {
      * Allow user to add superagent plugins
      */
 
-    this.plugins = null; // Setup configuration options for the ApiClient.
+    this.plugins = null;
+    this.accessTokenMap = new Map(); // Setup configuration options for the ApiClient.
 
     var appName = configuration.appName,
         appVersion = configuration.appVersion,
         bearerToken = configuration.bearerToken,
+        clientId = configuration.clientId,
+        clientSecret = configuration.clientSecret,
         machineName = configuration.machineName,
         environment = configuration.environment,
         timeout = configuration.timeout,
         username = configuration.username,
-        password = configuration.password;
-
-    if (environment === 'sandbox') {
-      this.baseUrl = 'https://sandbox-rest.avatax.com';
-    } else if (environment === 'production') {
-      this.baseUrl = 'https://rest.avatax.com';
-    } else {
-      throw new Error('Environment not configured correctly, Acceptable values are "production" and "sandbox".');
-    }
-
+        password = configuration.password,
+        testBasePath = configuration.testBasePath,
+        testTokenUrl = configuration.testTokenUrl;
     this.appName = appName;
     this.appVersion = appVersion;
     this.machineName = machineName;
     this.timeout = timeout;
-
-    if (username != null && password != null) {
-      this.auth = this.createBasicAuthHeader(username, password);
-    } else if (bearerToken != null) {
-      this.auth = 'Bearer ' + bearerToken;
-    }
+    this.clientId = clientId;
+    this.clientSecret = clientSecret;
+    this.username = username;
+    this.password = password;
+    this.bearerToken = bearerToken;
+    this.setBasePath(environment, testBasePath);
+    this.setTokenUrl(environment, testTokenUrl);
   }
-  /**
-  * Returns a string representation for an actual parameter.
-  * @param param The actual parameter.
-  * @returns {String} The string representation of <code>param</code>.
-  */
 
+  (0, _createClass2["default"])(ApiClient, [{
+    key: "setBasePath",
+    value: function setBasePath(environment, testBasePath) {
+      if (environment === 'sandbox') {
+        this.baseUrl = 'https://sandbox-rest.avatax.com';
+      } else if (environment === 'production') {
+        this.baseUrl = 'https://rest.avatax.com';
+      } else if (environment === 'test') {
+        if (!testBasePath) {
+          throw new Error('TestBasePath must be configured to run in test environment mode.');
+        }
 
-  _createClass(ApiClient, [{
+        this.baseUrl = testBasePath;
+      } else {
+        throw new Error('Environment not configured correctly, Acceptable values are "production", "sandbox", and "test".');
+      }
+    }
+  }, {
+    key: "setTokenUrl",
+    value: function setTokenUrl(environment, testTokenUrl) {
+      var prodTokenUrl = 'https://TO-BE-SET';
+      var sandboxTokenUrl = 'https://TO-BE-SET';
+
+      switch (environment) {
+        case 'production':
+          this.tokenUrl = prodTokenUrl;
+          break;
+
+        case 'sandbox':
+          this.tokenUrl = sandboxTokenUrl;
+          break;
+
+        case 'test':
+          this.tokenUrl = testTokenUrl ? testTokenUrl : prodTokenUrl;
+          break;
+      }
+    }
+    /**
+    * Returns a string representation for an actual parameter.
+    * @param param The actual parameter.
+    * @returns {String} The string representation of <code>param</code>.
+    */
+
+  }, {
     key: "paramToString",
     value: function paramToString(param) {
       if (param == undefined || param == null) {
@@ -364,15 +420,140 @@ var ApiClient = /*#__PURE__*/function () {
     * Applies authentication headers to the request.
     * @param {Object} request The request object created by a <code>superagent()</code> call.
     * @param {Array.<String>} authNames An array of authentication method names.
+    * @param {String} requiredScopes A space delimited string of all the required OAuth2 scopes for a given API call.
     */
 
   }, {
     key: "applyAuthToRequest",
-    value: function applyAuthToRequest(request, authNames) {
-      // for now, only support basic and oauth types.
-      request.set({
-        'Authorization': this.auth
+    value: function () {
+      var _applyAuthToRequest = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(request, authNames, requiredScopes) {
+        var scopes, accessToken;
+        return _regenerator["default"].wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(authNames.indexOf('OAuth') >= 0 && this.clientId && this.clientSecret)) {
+                  _context.next = 10;
+                  break;
+                }
+
+                scopes = this.standardizeScopes(requiredScopes);
+                accessToken = this.getOAuthAccessToken(scopes);
+
+                if (accessToken) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _context.next = 6;
+                return this.updateOAuthAccessToken(scopes);
+
+              case 6:
+                accessToken = this.getOAuthAccessToken(scopes);
+
+              case 7:
+                request.set({
+                  'Authorization': "Bearer ".concat(accessToken)
+                });
+                _context.next = 11;
+                break;
+
+              case 10:
+                if (this.username != null && this.password != null) {
+                  request.set({
+                    'Authorization': this.createBasicAuthHeader(this.username, this.password)
+                  });
+                } else if (this.bearerToken != null) {
+                  request.set({
+                    'Authorization': "Bearer ".concat(this.bearerToken)
+                  });
+                }
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function applyAuthToRequest(_x, _x2, _x3) {
+        return _applyAuthToRequest.apply(this, arguments);
+      }
+
+      return applyAuthToRequest;
+    }()
+  }, {
+    key: "getOAuthAccessToken",
+    value: function getOAuthAccessToken(scopes) {
+      return this.accessTokenMap.get(scopes);
+    }
+  }, {
+    key: "updateOAuthAccessToken",
+    value: function () {
+      var _updateOAuthAccessToken = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(scopes, accessToken) {
+        var currentAccessToken, res, data;
+        return _regenerator["default"].wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                currentAccessToken = this.getOAuthAccessToken(scopes); // If the current access token is not set, or the cached token equals the token passed in 
+                // (which will only be passed in, in the event the token failed due to being invalid or some other failure scenario)
+
+                if (!(!currentAccessToken || currentAccessToken === accessToken)) {
+                  _context2.next = 13;
+                  break;
+                }
+
+                _context2.prev = 2;
+                _context2.next = 5;
+                return this.buildOAuthRequest(scopes);
+
+              case 5:
+                res = _context2.sent;
+                data = JSON.parse(res.text);
+                this.accessTokenMap.set(scopes, data['access_token']);
+                _context2.next = 13;
+                break;
+
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](2);
+                throw new Error("OAuth2 Token retrieval failed. Error: ".concat(_context2.t0));
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[2, 10]]);
+      }));
+
+      function updateOAuthAccessToken(_x4, _x5) {
+        return _updateOAuthAccessToken.apply(this, arguments);
+      }
+
+      return updateOAuthAccessToken;
+    }()
+  }, {
+    key: "buildOAuthRequest",
+    value: function buildOAuthRequest(scopes) {
+      var request = (0, _superagent["default"])('POST', this.tokenUrl);
+      request.query({
+        'grant_type': 'client_credentials',
+        scope: scopes
       });
+      request.set('Authorization', this.createBasicAuthHeader(this.clientId, this.clientSecret));
+      request.type('application/x-www-form-urlencoded');
+      request.accept('application/json');
+      return request;
+    }
+  }, {
+    key: "standardizeScopes",
+    value: function standardizeScopes(requiredScopes) {
+      var strArr = requiredScopes.split(' ');
+      strArr.sort();
+      return strArr.join(' ');
     }
     /**
      * Deserializes an HTTP response body into a value of the specified type.
@@ -395,7 +576,7 @@ var ApiClient = /*#__PURE__*/function () {
 
       var data = response.body;
 
-      if (data == null || _typeof(data) === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length) {
+      if (data == null || (0, _typeof2["default"])(data) === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length) {
         // SuperAgent does not always produce a body; use the unparsed response as a fallback
         data = response.text;
       }
@@ -431,121 +612,144 @@ var ApiClient = /*#__PURE__*/function () {
 
   }, {
     key: "callApi",
-    value: function callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts, returnType, apiBasePath, callback) {
-      var _this2 = this;
+    value: function () {
+      var _callApi = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts, returnType, apiBasePath, callback, requiredScopes) {
+        var _this2 = this;
 
-      var url = this.buildUrl(path, pathParams, apiBasePath);
-      var request = (0, _superagent["default"])(httpMethod, url);
+        var url, request, index, contentType, _formParams, key, _formParamsValue, accept;
 
-      if (this.plugins !== null) {
-        for (var index in this.plugins) {
-          if (this.plugins.hasOwnProperty(index)) {
-            request.use(this.plugins[index]);
-          }
-        }
-      } // apply authentications
+        return _regenerator["default"].wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                url = this.buildUrl(path, pathParams, apiBasePath);
+                request = (0, _superagent["default"])(httpMethod, url);
+
+                if (this.plugins !== null) {
+                  for (index in this.plugins) {
+                    if (this.plugins.hasOwnProperty(index)) {
+                      request.use(this.plugins[index]);
+                    }
+                  }
+                }
+
+                _context3.next = 5;
+                return this.applyAuthToRequest(request, authNames, requiredScopes);
+
+              case 5:
+                // set query parameters
+                if (httpMethod.toUpperCase() === 'GET' && this.cache === false) {
+                  queryParams['_'] = new Date().getTime();
+                }
+
+                request.query(this.normalizeParams(queryParams)); // set header parameters
+
+                request.set({
+                  'X-Avalara-Client': "".concat(this.appName, "; ").concat(this.appVersion, "; JavascriptSdk; ").concat(this.sdkVersion, "; ").concat(this.machineName)
+                });
+                request.set(this.defaultHeaders).set(this.normalizeParams(headerParams)); // set requestAgent if it is set by user
+
+                if (this.requestAgent) {
+                  request.agent(this.requestAgent);
+                } // set request timeout
 
 
-      this.applyAuthToRequest(request, authNames); // set query parameters
+                request.timeout(this.timeout);
+                contentType = this.jsonPreferredMime(contentTypes);
 
-      if (httpMethod.toUpperCase() === 'GET' && this.cache === false) {
-        queryParams['_'] = new Date().getTime();
-      }
+                if (contentType) {
+                  // Issue with superagent and multipart/form-data (https://github.com/visionmedia/superagent/issues/746)
+                  if (contentType != 'multipart/form-data') {
+                    request.type(contentType);
+                  }
+                }
 
-      request.query(this.normalizeParams(queryParams)); // set header parameters
+                if (contentType === 'application/x-www-form-urlencoded') {
+                  request.send(_querystring["default"].stringify(this.normalizeParams(formParams)));
+                } else if (contentType == 'multipart/form-data') {
+                  _formParams = this.normalizeParams(formParams);
 
-      request.set({
-        'X-Avalara-Client': "".concat(this.appName, "; ").concat(this.appVersion, "; JavascriptSdk; ").concat(this.clientSdkVersion, "; ").concat(this.machineName)
-      });
-      request.set(this.defaultHeaders).set(this.normalizeParams(headerParams)); // set requestAgent if it is set by user
+                  for (key in _formParams) {
+                    if (_formParams.hasOwnProperty(key)) {
+                      _formParamsValue = _formParams[key];
 
-      if (this.requestAgent) {
-        request.agent(this.requestAgent);
-      } // set request timeout
+                      if (this.isFileParam(_formParamsValue)) {
+                        // file field
+                        request.attach(key, _formParamsValue);
+                      } else if (Array.isArray(_formParamsValue) && _formParamsValue.length && this.isFileParam(_formParamsValue[0])) {
+                        // multiple files
+                        _formParamsValue.forEach(function (file) {
+                          return request.attach(key, file);
+                        });
+                      } else {
+                        request.field(key, _formParamsValue);
+                      }
+                    }
+                  }
+                } else if (bodyParam !== null && bodyParam !== undefined) {
+                  if (!request.header['Content-Type']) {
+                    request.type('application/json');
+                  }
+
+                  request.send(bodyParam);
+                }
+
+                accept = this.jsonPreferredMime(accepts);
+
+                if (accept) {
+                  request.accept(accept);
+                }
+
+                if (returnType === 'Blob') {
+                  request.responseType('blob');
+                } else if (returnType === 'String') {
+                  request.responseType('string');
+                } // Attach previously saved cookies, if enabled
 
 
-      request.timeout(this.timeout);
-      var contentType = this.jsonPreferredMime(contentTypes);
+                if (this.enableCookies) {
+                  if (typeof window === 'undefined') {
+                    this.agent._attachCookies(request);
+                  } else {
+                    request.withCredentials();
+                  }
+                }
 
-      if (contentType) {
-        // Issue with superagent and multipart/form-data (https://github.com/visionmedia/superagent/issues/746)
-        if (contentType != 'multipart/form-data') {
-          request.type(contentType);
-        }
-      }
+                request.end(function (error, response) {
+                  if (callback) {
+                    var data = null;
 
-      if (contentType === 'application/x-www-form-urlencoded') {
-        request.send(_querystring["default"].stringify(this.normalizeParams(formParams)));
-      } else if (contentType == 'multipart/form-data') {
-        var _formParams = this.normalizeParams(formParams);
+                    if (!error) {
+                      try {
+                        data = _this2.deserialize(response, returnType);
 
-        for (var key in _formParams) {
-          if (_formParams.hasOwnProperty(key)) {
-            var _formParamsValue = _formParams[key];
+                        if (_this2.enableCookies && typeof window === 'undefined') {
+                          _this2.agent._saveCookies(response);
+                        }
+                      } catch (err) {
+                        error = err;
+                      }
+                    }
 
-            if (this.isFileParam(_formParamsValue)) {
-              // file field
-              request.attach(key, _formParamsValue);
-            } else if (Array.isArray(_formParamsValue) && _formParamsValue.length && this.isFileParam(_formParamsValue[0])) {
-              // multiple files
-              _formParamsValue.forEach(function (file) {
-                return request.attach(key, file);
-              });
-            } else {
-              request.field(key, _formParamsValue);
+                    callback(error, data, response);
+                  }
+                });
+                return _context3.abrupt("return", request);
+
+              case 20:
+              case "end":
+                return _context3.stop();
             }
           }
-        }
-      } else if (bodyParam !== null && bodyParam !== undefined) {
-        if (!request.header['Content-Type']) {
-          request.type('application/json');
-        }
+        }, _callee3, this);
+      }));
 
-        request.send(bodyParam);
+      function callApi(_x6, _x7, _x8, _x9, _x10, _x11, _x12, _x13, _x14, _x15, _x16, _x17, _x18, _x19) {
+        return _callApi.apply(this, arguments);
       }
 
-      var accept = this.jsonPreferredMime(accepts);
-
-      if (accept) {
-        request.accept(accept);
-      }
-
-      if (returnType === 'Blob') {
-        request.responseType('blob');
-      } else if (returnType === 'String') {
-        request.responseType('string');
-      } // Attach previously saved cookies, if enabled
-
-
-      if (this.enableCookies) {
-        if (typeof window === 'undefined') {
-          this.agent._attachCookies(request);
-        } else {
-          request.withCredentials();
-        }
-      }
-
-      request.end(function (error, response) {
-        if (callback) {
-          var data = null;
-
-          if (!error) {
-            try {
-              data = _this2.deserialize(response, returnType);
-
-              if (_this2.enableCookies && typeof window === 'undefined') {
-                _this2.agent._saveCookies(response);
-              }
-            } catch (err) {
-              error = err;
-            }
-          }
-
-          callback(error, data, response);
-        }
-      });
-      return request;
-    }
+      return callApi;
+    }()
     /**
     * Parses an ISO-8601 string representation or epoch representation of a date value.
     * @param {String} str The date value as a string.
@@ -604,7 +808,7 @@ var ApiClient = /*#__PURE__*/function () {
   }, {
     key: "createBasicAuthHeader",
     value: function createBasicAuthHeader(account, licenseKey) {
-      var base64Encoded = new Buffer("".concat(account, ":").concat(licenseKey)).toString('base64');
+      var base64Encoded = Buffer.from("".concat(account, ":").concat(licenseKey)).toString('base64');
       return "Basic ".concat(base64Encoded);
     }
   }, {
@@ -626,7 +830,7 @@ var ApiClient = /*#__PURE__*/function () {
   }], [{
     key: "canBeJsonified",
     value: function canBeJsonified(str) {
-      if (typeof str !== 'string' && _typeof(str) !== 'object') return false;
+      if (typeof str !== 'string' && (0, _typeof2["default"])(str) !== 'object') return false;
 
       try {
         var type = str.toString();
@@ -691,7 +895,7 @@ var ApiClient = /*#__PURE__*/function () {
             return data.map(function (item) {
               return ApiClient.convertToType(item, itemType);
             });
-          } else if (_typeof(type) === 'object') {
+          } else if ((0, _typeof2["default"])(type) === 'object') {
             // for plain object type like: {'String': 'Integer'}
             var keyType, valueType;
 
@@ -735,7 +939,6 @@ var ApiClient = /*#__PURE__*/function () {
       }
     }
   }]);
-
   return ApiClient;
 }();
 /**

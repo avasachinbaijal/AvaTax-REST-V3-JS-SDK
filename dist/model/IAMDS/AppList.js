@@ -13,6 +13,8 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
 
+var _App = _interopRequireDefault(require("./App"));
+
 /**
  * AvaTax Software Development Kit for JavaScript
  *
@@ -30,19 +32,18 @@ var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
  */
 
 /**
- * The AgeVerifyResult model module.
- * @module model/AgeVerification/AgeVerifyResult
+ * The AppList model module.
+ * @module model/IAMDS/AppList
  * @version 2.4.36
  */
-var AgeVerifyResult = /*#__PURE__*/function () {
+var AppList = /*#__PURE__*/function () {
   /**
-   * Constructs a new <code>AgeVerifyResult</code>.
-   * The Result of a call to the /ageVerification/verify endpoint.
-   * @alias module:model/AgeVerification/AgeVerifyResult
+   * Constructs a new <code>AppList</code>.
+   * @alias module:model/IAMDS/AppList
    */
-  function AgeVerifyResult() {
-    (0, _classCallCheck2["default"])(this, AgeVerifyResult);
-    AgeVerifyResult.initialize(this);
+  function AppList() {
+    (0, _classCallCheck2["default"])(this, AppList);
+    AppList.initialize(this);
   }
   /**
    * Initializes the fields of this object.
@@ -51,49 +52,65 @@ var AgeVerifyResult = /*#__PURE__*/function () {
    */
 
 
-  (0, _createClass2["default"])(AgeVerifyResult, null, [{
+  (0, _createClass2["default"])(AppList, null, [{
     key: "initialize",
     value: function initialize(obj) {}
     /**
-     * Constructs a <code>AgeVerifyResult</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>AppList</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AgeVerification/AgeVerifyResult} obj Optional instance to populate.
-     * @return {module:model/AgeVerification/AgeVerifyResult} The populated <code>AgeVerifyResult</code> instance.
+     * @param {module:model/IAMDS/AppList} obj Optional instance to populate.
+     * @return {module:model/IAMDS/AppList} The populated <code>AppList</code> instance.
      */
 
   }, {
     key: "constructFromObject",
     value: function constructFromObject(data, obj) {
       if (data) {
-        obj = obj || new AgeVerifyResult();
+        obj = obj || new AppList();
 
-        if (data.hasOwnProperty('isOfAge')) {
-          obj['isOfAge'] = _ApiClient["default"].convertToType(data['isOfAge'], 'Boolean');
+        if (data.hasOwnProperty('@recordsetCount')) {
+          obj['@recordsetCount'] = _ApiClient["default"].convertToType(data['@recordsetCount'], 'Number');
         }
 
-        if (data.hasOwnProperty('failureCodes')) {
-          obj['failureCodes'] = _ApiClient["default"].convertToType(data['failureCodes'], [AgeVerifyResult]);
+        if (data.hasOwnProperty('@nextLink')) {
+          obj['@nextLink'] = _ApiClient["default"].convertToType(data['@nextLink'], 'String');
+        }
+
+        if (data.hasOwnProperty('pageKey')) {
+          obj['pageKey'] = _ApiClient["default"].convertToType(data['pageKey'], 'String');
+        }
+
+        if (data.hasOwnProperty('items')) {
+          obj['items'] = _ApiClient["default"].convertToType(data['items'], [_App["default"]]);
         }
       }
 
       return obj;
     }
   }]);
-  return AgeVerifyResult;
+  return AppList;
 }();
 /**
- * Describes whether the individual meets or exceeds the minimum legal drinking age.
- * @member {Boolean} isOfAge
+ * @member {Number} @recordsetCount
  */
 
 
-AgeVerifyResult.prototype['isOfAge'] = undefined;
+AppList.prototype['@recordsetCount'] = undefined;
 /**
- * A list of failure codes describing why a *false* age determination was made.
- * @member {Array.<module:model/AgeVerification/AgeVerifyResult>} failureCodes
+ * @member {String} @nextLink
  */
 
-AgeVerifyResult.prototype['failureCodes'] = undefined;
-var _default = AgeVerifyResult;
+AppList.prototype['@nextLink'] = undefined;
+/**
+ * @member {String} pageKey
+ */
+
+AppList.prototype['pageKey'] = undefined;
+/**
+ * @member {Array.<module:model/IAMDS/App>} items
+ */
+
+AppList.prototype['items'] = undefined;
+var _default = AppList;
 exports["default"] = _default;

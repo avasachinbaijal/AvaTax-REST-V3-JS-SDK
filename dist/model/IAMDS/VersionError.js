@@ -32,34 +32,31 @@ var _ApiClient = _interopRequireDefault(require("../../ApiClient"));
  */
 
 /**
-* Enum class AgeVerifyFailureCode.
+* Enum class VersionError.
 * @enum {}
 * @readonly
 */
-var AgeVerifyFailureCode = /*#__PURE__*/function () {
-  function AgeVerifyFailureCode() {
-    (0, _classCallCheck2["default"])(this, AgeVerifyFailureCode);
-    (0, _defineProperty2["default"])(this, "not_found", "not_found");
-    (0, _defineProperty2["default"])(this, "dob_unverifiable", "dob_unverifiable");
-    (0, _defineProperty2["default"])(this, "under_age", "under_age");
-    (0, _defineProperty2["default"])(this, "suspected_fraud", "suspected_fraud");
-    (0, _defineProperty2["default"])(this, "deceased", "deceased");
-    (0, _defineProperty2["default"])(this, "unknown_error", "unknown_error");
+var VersionError = /*#__PURE__*/function () {
+  function VersionError() {
+    (0, _classCallCheck2["default"])(this, VersionError);
+    (0, _defineProperty2["default"])(this, "too-new", "version-too-new");
+    (0, _defineProperty2["default"])(this, "too-old", "version-too-old");
+    (0, _defineProperty2["default"])(this, "not-valid", "version-not-valid");
   }
 
-  (0, _createClass2["default"])(AgeVerifyFailureCode, null, [{
+  (0, _createClass2["default"])(VersionError, null, [{
     key: "constructFromObject",
     value:
     /**
-    * Returns a <code>AgeVerifyFailureCode</code> enum value from a Javascript object name.
+    * Returns a <code>VersionError</code> enum value from a Javascript object name.
     * @param {Object} data The plain JavaScript object containing the name of the enum value.
-    * @return {module:model/AgeVerification/AgeVerifyFailureCode} The enum <code>AgeVerifyFailureCode</code> value.
+    * @return {module:model/IAMDS/VersionError} The enum <code>VersionError</code> value.
     */
     function constructFromObject(object) {
       return object;
     }
   }]);
-  return AgeVerifyFailureCode;
+  return VersionError;
 }();
 
-exports["default"] = AgeVerifyFailureCode;
+exports["default"] = VersionError;
