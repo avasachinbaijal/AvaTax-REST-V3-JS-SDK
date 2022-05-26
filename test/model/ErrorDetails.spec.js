@@ -31,7 +31,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new AvalaraSdk.ErrorDetails();
+    instance = new AvalaraSdk.Shipping.ErrorDetails();
   });
 
   var getProperty = function(object, getter, property) {
