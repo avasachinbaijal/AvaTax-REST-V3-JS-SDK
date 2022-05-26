@@ -41,7 +41,7 @@
   var apiClient = new AvalaraSdk.ApiClient(config);
 
   beforeEach(function() {
-    instance = new AvalaraSdk.ShippingVerificationApi(apiClient);
+    instance = new AvalaraSdk.Shipping.ShippingVerificationApi(apiClient);
   });
 
   var getProperty = function(object, getter, property) {

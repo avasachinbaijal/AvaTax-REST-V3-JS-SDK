@@ -18,7 +18,7 @@ describe('Integration Test Shipping Verification API: ', () => {
     var api;
 
     beforeEach(() => {
-        api = new AvalaraSdk.ShippingVerificationApi(client);
+        api = new AvalaraSdk.Shipping.ShippingVerificationApi(client);
     });
 
     it('should be able to call Verify Shipment endpoint', (done) => {
@@ -31,7 +31,7 @@ describe('Integration Test Shipping Verification API: ', () => {
         };
         
         var opts = {
-          'simulatedFailureCode': new AvalaraSdk.AgeVerifyFailureCode() // {AgeVerifyFailureCode} (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes.
+          'simulatedFailureCode': new AvalaraSdk.AgeVerification.AgeVerifyFailureCode() // {AgeVerifyFailureCode} (Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes.
         };
         api.verifyShipment("DEFAULT", "063e1af4-11d3-4489-b8ba-ae1149758df4", opts, callback);
     });

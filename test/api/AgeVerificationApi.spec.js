@@ -41,7 +41,7 @@
   var apiClient = new AvalaraSdk.ApiClient(config);
 
   beforeEach(function() {
-    instance = new AvalaraSdk.AgeVerificationApi(apiClient);
+    instance = new AvalaraSdk.AgeVerification.AgeVerificationApi(apiClient);
   });
 
   var getProperty = function(object, getter, property) {

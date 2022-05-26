@@ -43,13 +43,12 @@
     var apiClient = new AvalaraSdk.ApiClient(config);
   
     beforeEach(function() {
-      instance = new AvalaraSdk.UserApi(apiClient);
+      instance = new AvalaraSdk.IAMDS.UserApi(apiClient);
     });
   
-
     describe('UserAPI', function() {
       describe('createUser', function() {
-        it('should call verifyAge successfully', function(done) {
+        it('should call createUser successfully', function(done) {
             const callback = (error, data, res) => {
                 if (error) {
                     console.log(error);

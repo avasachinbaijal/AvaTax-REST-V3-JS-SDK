@@ -31,7 +31,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new AvalaraSdk.AgeVerifyRequest();
+    instance = new AvalaraSdk.AgeVerification.AgeVerifyRequest();
   });
 
   var getProperty = function(object, getter, property) {
