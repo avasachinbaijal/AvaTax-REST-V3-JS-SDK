@@ -48,16 +48,27 @@
   
     describe('UserAPI', function() {
       describe('createUser', function() {
-        it('should call createUser successfully', function(done) {
+        it('should call createUser successfully', async function(done) {
             const callback = (error, data, res) => {
                 if (error) {
                     console.log(error);
+                    instance.createUser({}, baseCallback);
                 } else {
                     console.log("Result of createUser:");
                     console.log(data);
+                    instance.createUser({}, baseCallback);
                 }
             };
-            instance.createUser({}, callback);
+            const baseCallback = (error, data, res) => {
+              if (error) {
+                  console.log(error);
+
+              } else {
+                  console.log("Result of createUser:");
+                  console.log(data);
+
+              }
+          };
             instance.createUser({}, callback);
             instance.listUsers({}, callback);
             done();

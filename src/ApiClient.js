@@ -376,7 +376,15 @@
      }
 
      getOAuthAccessToken(scopes) {
-        return this.accessTokenMap.get(scopes);
+        const tokenMetadata = this.accessTokenMap.get(scopes);
+        if (tokenMetadata) {
+            const { accessToken, expiry } = tokenMetadata;
+            const expirationTime = Math.floor(Date.now() / 1000) + 300;
+            if (expirationTime < expiry) {
+                return accessToken;
+            }
+        }
+        return null;
      }
 
      async updateOAuthAccessToken(scopes, accessToken) {
@@ -387,7 +395,8 @@
             try {
                 const res = await this.buildOAuthRequest(scopes);
                 const data = JSON.parse(res.text);
-                this.accessTokenMap.set(scopes, data['access_token']);
+                let timestamp = Math.floor(Date.now() / 1000) + data['expires_in'];
+                this.accessTokenMap.set(scopes, { accessToken: data['access_token'], expiry: timestamp });
             } catch (err) {
                 throw new Error(`OAuth2 Token retrieval failed. Error: ${err}`);
             }
