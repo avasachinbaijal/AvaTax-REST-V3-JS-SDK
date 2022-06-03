@@ -358,22 +358,22 @@
      * @param {Array.<String>} authNames An array of authentication method names.
      * @param {String} requiredScopes A space delimited string of all the required OAuth2 scopes for a given API call.
      */
-     async applyAuthToRequest(request, authNames, requiredScopes) {
-         // for now, only support basic and oauth types.
-        if (authNames.indexOf('OAuth') >= 0 && this.clientId && this.clientSecret) {
-            let scopes = this.standardizeScopes(requiredScopes);
-            let accessToken = this.getOAuthAccessToken(scopes);
-            if (!accessToken) {
-                await this.updateOAuthAccessToken(scopes);
-                accessToken = this.getOAuthAccessToken(scopes);
-            }
-            request.set({ 'Authorization': `Bearer ${accessToken}` });
-        } else if (this.username != null && this.password != null) {
-            request.set({ 'Authorization': this.createBasicAuthHeader(this.username, this.password) });
-        } else if (this.bearerToken != null) {
-            request.set({ 'Authorization': `Bearer ${this.bearerToken}` });
-        }
-     }
+    async applyAuthToRequest(request, authNames, requiredScopes) {
+        // for now, only support basic and oauth types.
+       if (this.bearerToken != null) {
+           request.set({ 'Authorization': `Bearer ${this.bearerToken}` });
+       } else if (authNames.indexOf('OAuth') >= 0 && this.clientId && this.clientSecret) {
+           let scopes = this.standardizeScopes(requiredScopes);
+           let accessToken = this.getOAuthAccessToken(scopes);
+           if (!accessToken) {
+               await this.updateOAuthAccessToken(scopes);
+               accessToken = this.getOAuthAccessToken(scopes);
+           }
+           request.set({ 'Authorization': `Bearer ${accessToken}` });
+       } else if (this.username != null && this.password != null) {
+           request.set({ 'Authorization': this.createBasicAuthHeader(this.username, this.password) });
+       }
+    }
 
      getOAuthAccessToken(scopes) {
         const tokenMetadata = this.accessTokenMap.get(scopes);
