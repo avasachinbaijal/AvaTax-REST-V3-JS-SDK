@@ -474,7 +474,7 @@
      */
      async callApi(path, httpMethod, pathParams,
          queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts,
-         returnType, apiBasePath, callback, requiredScopes) {
+         returnType, apiBasePath, callback, requiredScopes, isRetry) {
  
          var url = this.buildUrl(path, pathParams, apiBasePath);
          var request = superagent(httpMethod, url);
@@ -563,7 +563,20 @@
              }
          }
  
-         request.end((error, response) => {
+         request.end(async (error, response) => {
+             const { headers, statusCode } = response;
+             // Retry logic for OAuth token failure, if we receive 401 or 403 back, try to fetch a new token and make the API call a second time. If that fails again, return error as normal to the caller.
+             if (response != null && (statusCode === 401 || statusCode === 403) && this.clientId && this.clientSecret) {
+                const authHeader = headers.Authorization;
+                const authHeaderValues = authHeader && authHeader.split(' ');
+                if (authHeaderValues && authHeaderValues.length === 2) {
+                    if (!isRetry) {
+                        await this.updateOAuthAccessToken(requiredScopes, authHeaderValues[1]);
+                        this.callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentType, accepts, returnType, apiBasePath, callback, requiredScopes, true);
+                        return;
+                    }
+                }
+             }
              if (callback) {
                  var data = null;
                  if (!error) {
