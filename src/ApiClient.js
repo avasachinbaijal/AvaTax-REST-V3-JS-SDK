@@ -398,6 +398,7 @@
                 let timestamp = Math.floor(Date.now() / 1000) + data['expires_in'];
                 this.accessTokenMap.set(scopes, { accessToken: data['access_token'], expiry: timestamp });
             } catch (err) {
+                console.log(`OAuth2 Token retrieval failed. Error: ${err}`);
                 throw new Error(`OAuth2 Token retrieval failed. Error: ${err}`);
             }
         }
