@@ -38,7 +38,7 @@
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         testBasePath: 'https://localhost:3000',
-        testTokenUrl: 'https://dev-75323271.okta.com/oauth2/default/v1/token'
+        testTokenUrl: process.env.TEST_TOKEN_URL
     };
     var apiClient = new AvalaraSdk.ApiClient(config);
   
@@ -69,9 +69,14 @@
 
               }
           };
+          try {
             instance.createUser({}, callback);
             instance.listUsers({}, callback);
-            done();
+          } catch (ex) {
+            console.log(ex);
+          }
+          
+          done();
         });
       });
     });
